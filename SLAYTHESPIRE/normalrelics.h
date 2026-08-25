@@ -100,7 +100,7 @@ class Vajra : public Relic
 public:
     Vajra();
 
-    void onEquip(Player* player) override;
+    void onCombatStart(Player* player) override;
 };
 
 #endif // NORMALRELICS_H

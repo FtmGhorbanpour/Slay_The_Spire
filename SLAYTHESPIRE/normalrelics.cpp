@@ -179,10 +179,10 @@ void Orichalcum::onTurnEnd(Player* player)
 
 
 Vajra::Vajra()
-    : Relic(RelicId::Vajra, "Vajra", "Permanently gain 1 Strength upon pickup.", Relic::Tier::Normal)
+    : Relic(RelicId::Vajra, "Vajra", "Start each combat with 1 additional Strength.", Relic::Tier::Normal)
 {
 }
-void Vajra::onEquip(Player* player)
+void Vajra::onCombatStart(Player* player)
 {
     if (!player)
         return;
