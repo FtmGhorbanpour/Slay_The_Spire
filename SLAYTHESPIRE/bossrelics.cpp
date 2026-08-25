@@ -3,6 +3,10 @@
 #include "card.h"
 #include "enemy.h"
 #include "effect.h"
+#include "cursecards.h"
+#include "statuscards.h"
+#include "masterdeck.h"
+#include "combatdeck.h"
 
 CallingBell::CallingBell()
     : Relic(RelicId::CallingBell, "Calling Bell",
@@ -15,8 +19,8 @@ void CallingBell::onEquip(Player* player)
     if (!player)
         return;
 
-    // TODO (Deck System):
-    // player->addCardToDeck(new CurseOfTheBell());
+    if (MasterDeck* deck = player->getMasterDeck())
+        deck->addCard(new CurseOfTheBell());
 
     RelicSystem::grantRandomRelics(player, Relic::Tier::Normal, 3);
 }
