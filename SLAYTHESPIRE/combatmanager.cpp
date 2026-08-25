@@ -109,8 +109,10 @@ void CombatManager::handleTurnStart()
         return;
 
     turnCount++;
-
-    player->startTurnBlockReset();
+    if(turnCount > 1)
+    {
+        player->startTurnBlockReset();
+    }
 
     player->resetEnergy();
     player->drawCards(5);
