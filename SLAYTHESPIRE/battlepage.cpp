@@ -2044,6 +2044,9 @@ bool BattlePage::isCardPlayableNow(Card* card) const
     if (!card->canPlay())
         return false;
 
+    if (!player->canPlayCard())
+        return false;
+
     if (player->getCurrentEnergy() < card->getEnergyCost())
         return false;
 
