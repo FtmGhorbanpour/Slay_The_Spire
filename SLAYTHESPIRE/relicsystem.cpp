@@ -291,7 +291,7 @@ void RelicSystem::restoreState(const QVector<RelicSaveData>& data, Player* playe
             continue;
 
         relic->setCounter(relicData.counter);
-        addRelic(relic, player);
+        relics.append(relic);
     }
 }
 
