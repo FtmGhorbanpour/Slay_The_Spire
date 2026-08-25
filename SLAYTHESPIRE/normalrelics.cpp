@@ -90,6 +90,12 @@ void Shuriken::onCardPlayed(Player* player, Card* card)
         setCounter(0);
     }
 }
+void Shuriken::onTurnStart(Player* player)
+{
+    Q_UNUSED(player)
+
+    setCounter(0);
+}
 
 
 //امتیازی**************************************************************
@@ -113,6 +119,12 @@ void Kunai::onCardPlayed(Player* player, Card* card)
         player->addEffect(Effect::Type::Dexterity, Effect::Category::Buff, 1);
         setCounter(0);
     }
+}
+void Kunai::onTurnStart(Player* player)
+{
+    Q_UNUSED(player)
+
+    setCounter(0);
 }
 
 

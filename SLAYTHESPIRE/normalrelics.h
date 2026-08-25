@@ -44,6 +44,7 @@ public:
     Shuriken();
 
     void onCardPlayed(Player* player, Card* card) override;
+    void onTurnStart(Player* player) override;
 
 private:
     static const int ATTACKS_REQUIRED = 3;
@@ -55,6 +56,7 @@ public:
     Kunai();
 
     void onCardPlayed(Player* player, Card* card) override;
+    void onTurnStart(Player* player) override;
 
 private:
     static const int ATTACKS_REQUIRED = 3;
