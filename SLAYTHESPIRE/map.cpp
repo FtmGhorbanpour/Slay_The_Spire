@@ -192,11 +192,11 @@ NodeType Map::pickWeightedType(int floorIndex) const
     };
 
     const QVector<WeightedType> options = {
-                                           {NodeType::Monster,  45},
+                                           {NodeType::Monster,  30},
                                            {NodeType::Event,    20},
                                            {NodeType::Elite,    15},
                                            {NodeType::Campfire, 12},
-                                           {NodeType::Shop,      8},
+                                           {NodeType::Shop,     23},
                                            };
 
     const bool nearBoss = (floorIndex >= FLOORS_PER_ACT - 2);
