@@ -46,9 +46,11 @@ void MarkOfPain::onCombatStart(Player* player)
     if (!player)
         return;
 
-    // TODO (Deck System):
-    // player->addCardToDrawPile(new Wound());
-    // player->addCardToDrawPile(new Wound());
+    if (CombatDeck* deck = player->getCombatDeck())
+    {
+        deck->addCardToDrawPile(new Wound(), true);
+        deck->addCardToDrawPile(new Wound(), true);
+    }
 }
 
 
