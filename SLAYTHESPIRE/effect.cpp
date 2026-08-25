@@ -66,6 +66,9 @@ QString Effect::getName() const
 
     case Type::Enrage:
         return "Enrage";
+
+    case Type::Girya:
+        return "Girya";
     }
 
     return "";
@@ -96,6 +99,9 @@ QString Effect::getTooltip() const
 {
     switch (type)
     {
+    case Type::Girya:
+        return QString("Attack damage is increased by %1.").arg(amount);
+
     case Type::Strength:
         return QString("Attack damage is increased by %1.").arg(amount);
 

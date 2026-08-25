@@ -23,6 +23,11 @@ int CombatCalculator::calculateDamage(Character* attacker, Character* defender, 
             damage += strength->getAmount();
         }
 
+        if(Effect* strength = attacker->getEffect(Effect::Type::Girya))
+        {
+            damage += strength->getAmount();
+        }
+
         if(attacker->hasEffect(Effect::Type::Weak))
         {
             damage = static_cast<int>(damage * 0.75);

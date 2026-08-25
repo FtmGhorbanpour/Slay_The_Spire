@@ -1910,6 +1910,10 @@ QString BattlePage::effectImagePath(const Effect* effect)
         QString EffectPath = QDir(baseDir).filePath(QString("assets/Effect/%1Eff.png").arg(cleanName));
         return EffectPath;
     }
+    else if(cleanName == "Girya")
+    {
+        return QString(":/Relic/%1.png").arg(cleanName);
+    }
     else
     {
         return QString(":/Effect/%1Eff.png").arg(cleanName);

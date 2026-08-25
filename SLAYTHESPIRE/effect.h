@@ -33,7 +33,8 @@ public:
         Berserk,
         DarkEmbrace,
         Entangle,
-        Enrage
+        Enrage,
+        Girya
     };
 
     Effect(Type type, Category category, int amount, int duration = 0);
