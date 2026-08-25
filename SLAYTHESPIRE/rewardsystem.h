@@ -67,6 +67,8 @@ private:
     QVector<Card*> generateCardChoices() const;
     Potion* createRandomPotion() const;
 
+     static int applyGoldenIdolBonus(Player* player, int gold);
+
     static const int POTION_DROP_CHANCE = 40; // percent
     static const int BOSS_GOLD_AMOUNT = 80;
 };

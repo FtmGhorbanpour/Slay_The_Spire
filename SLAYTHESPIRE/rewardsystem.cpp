@@ -82,11 +82,18 @@ Potion* RewardSystem::createRandomPotion() const
     return nullptr;
 }
 
+int RewardSystem::applyGoldenIdolBonus(Player* player, int gold)
+{
+    if (player && player->hasRelic(RelicId::GoldenIdolRelic))
+        return qRound(gold * 1.25);
+
+    return gold;
+}
+
+
 void RewardSystem::generateNormalReward(Player* player)
 {
-    Q_UNUSED(player)
-
-    rewards.append(new Reward(rollGold(15, 25)));
+    rewards.append(new Reward(applyGoldenIdolBonus(player, rollGold(15, 25))));
 
     QVector<Card*> cardChoices = generateCardChoices();
     if (!cardChoices.isEmpty())
@@ -98,7 +105,7 @@ void RewardSystem::generateNormalReward(Player* player)
 
 void RewardSystem::generateEliteReward(Player* player)
 {
-    rewards.append(new Reward(rollGold(30, 40)));
+    rewards.append(new Reward(applyGoldenIdolBonus(player, rollGold(30, 40))));
 
     QVector<Card*> cardChoices = generateCardChoices();
     if (!cardChoices.isEmpty())
@@ -118,7 +125,7 @@ void RewardSystem::generateEliteReward(Player* player)
 
 void RewardSystem::generateBossReward(Player* player)
 {
-    rewards.append(new Reward(BOSS_GOLD_AMOUNT));
+    rewards.append(new Reward(applyGoldenIdolBonus(player, BOSS_GOLD_AMOUNT)));
 
     QVector<Relic*> bossChoices = RelicSystem::createRandomRelics(player, Relic::Tier::Boss, 3);
 

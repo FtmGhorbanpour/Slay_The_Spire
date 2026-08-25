@@ -143,10 +143,6 @@ GoldenIdolRelic::GoldenIdolRelic()
 
 void GoldenIdolRelic::onEnemyDeath(Player* player, Enemy* enemy)
 {
-    if (player == nullptr || enemy == nullptr)
-        return;
-
-    // TODO: enemy->getGoldDrop()
-    // int bonus = qRound(enemy->getGoldDrop() * 0.25f);
-    // player->gainGold(bonus);
+    Q_UNUSED(player)
+    Q_UNUSED(enemy)
 }
