@@ -2,6 +2,7 @@
 #include "player.h"
 #include "card.h"
 #include "effect.h"
+#include "combatcalculator.h"
 
 //STARTER RELIC
 BurningBlood::BurningBlood()
@@ -138,7 +139,7 @@ void Anchor::onCombatStart(Player* player)
     if (!player)
         return;
 
-    player->addBlock(BLOCK_AMOUNT);
+    player->addBlock(CombatCalculator::calculateBlock(player, BLOCK_AMOUNT));
 }
 
 
@@ -173,7 +174,7 @@ void Orichalcum::onTurnEnd(Player* player)
         return;
 
     if (!player->hasBlock())
-        player->addBlock(BLOCK_AMOUNT);
+        player->addBlock(CombatCalculator::calculateBlock(player, BLOCK_AMOUNT));
 }
 
 

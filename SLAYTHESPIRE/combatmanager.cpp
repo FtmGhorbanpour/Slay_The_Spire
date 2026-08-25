@@ -147,6 +147,9 @@ bool CombatManager::playCard(Card* card, Enemy* target)
     if (!card->canPlay())
         return false;
 
+    if (!player->canPlayCard())
+        return false;
+
     if (!player->useEnergy(card->getEnergyCost()))
         return false;
 
