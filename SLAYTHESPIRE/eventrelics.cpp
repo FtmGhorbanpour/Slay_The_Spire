@@ -6,6 +6,8 @@
 
 #include "audiomanager.h"
 
+#include "combatdeck.h"
+
 #include <QDebug>
 
 //======================================================
@@ -24,16 +26,8 @@ void WarpedTongs::onCombatStart(Player* player)
     if (!player)
         return;
 
-    // TODO (CombatDeck - Ana)
-
-    // Upgrade one random card currently belonging to the combat deck, This upgrade is TEMPORARY and lasts only for this combat.
-
-    // CombatDeck is responsible for:
-    //  - selecting an eligible random card.
-    //  - preventing duplicate upgrades.
-    //  - restoring the original card after combat.
-
-    // Example: player->getCombatDeck()->upgradeRandomCardForCombat();
+    if (CombatDeck* deck = player->getCombatDeck())
+        deck->upgradeRandomCard();
 }
 
 

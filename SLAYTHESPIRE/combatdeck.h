@@ -69,6 +69,7 @@ public:
     void addCardToDiscardPile(Card* card);
     void addCardToDrawPile(Card* card, bool random = false, bool onTop = false);
     bool removeCardFromHand(Card* card);
+    bool upgradeRandomCard();
 
     //----------------------------------
     // Shuffle

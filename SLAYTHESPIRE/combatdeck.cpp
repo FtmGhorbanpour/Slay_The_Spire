@@ -296,3 +296,38 @@ bool CombatDeck::isHandFull() const
 {
     return hand.size() >= MAX_HAND_SIZE;
 }
+
+//----------------------------------
+// Warped Tongs support
+//----------------------------------
+
+bool CombatDeck::upgradeRandomCard()
+{
+    QVector<Card*> eligible;
+
+    for (Card* card : std::as_const(drawPile))
+    {
+        if (card && !card->getIsUpgraded())
+            eligible.append(card);
+    }
+
+    for (Card* card : std::as_const(hand))
+    {
+        if (card && !card->getIsUpgraded())
+            eligible.append(card);
+    }
+
+    for (Card* card : std::as_const(discardPile))
+    {
+        if (card && !card->getIsUpgraded())
+            eligible.append(card);
+    }
+
+    if (eligible.isEmpty())
+        return false;
+
+    int index = QRandomGenerator::global()->bounded(eligible.size());
+    eligible[index]->upgrade();
+
+    return true;
+}
