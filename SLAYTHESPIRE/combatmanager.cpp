@@ -1,6 +1,7 @@
 #include "combatmanager.h"
 
 #include "normalenemies.h"
+#include "bossenemies.h"
 #include "player.h"
 #include "enemy.h"
 #include "card.h"
@@ -649,34 +650,89 @@ void CombatManager::cleanupAfterCombat()
 
 void CombatManager::handleEnemySplit(Enemy* enemy)
 {
-    auto* largeSlime = dynamic_cast<LargeSlime*>(enemy);
+    // auto* largeSlime = dynamic_cast<LargeSlime*>(enemy);
 
-    if (!largeSlime || !largeSlime->isSplitRequested())
-        return;
+    // if (!largeSlime || !largeSlime->isSplitRequested())
+    //     return;
 
-    int remainingHp = largeSlime->getCurrentHealth();
+    // int remainingHp = largeSlime->getCurrentHealth();
 
-    int index = enemies.indexOf(largeSlime);
-    if (index == -1)
-        return;
+    // int index = enemies.indexOf(largeSlime);
+    // if (index == -1)
+    //     return;
 
-    largeSlime->disconnect(this);
-    enemies.removeAt(index);
+    // largeSlime->disconnect(this);
+    // enemies.removeAt(index);
 
-    for (int i = 0; i < 2; ++i)
+    // for (int i = 0; i < 2; ++i)
+    // {
+
+    //     MediumSlime* medium = new MediumSlime(remainingHp);
+
+    //     connectEnemy(medium);
+
+    //     enemies.insert(index + i, medium);
+    // }
+
+    // largeSlime->deleteLater();
+
+    // emit enemiesChanged();
+    // emit statsUpdated();
+
+    if (auto* largeSlime = dynamic_cast<LargeSlime*>(enemy))
     {
+        if (!largeSlime->isSplitRequested())
+            return;
 
-        MediumSlime* medium = new MediumSlime(remainingHp);
+        int remainingHp = largeSlime->getCurrentHealth();
 
-        connectEnemy(medium);
+        int index = enemies.indexOf(largeSlime);
+        if (index == -1)
+            return;
 
-        enemies.insert(index + i, medium);
+        largeSlime->disconnect(this);
+        enemies.removeAt(index);
+
+        for (int i = 0; i < 2; ++i)
+        {
+            MediumSlime* medium = new MediumSlime(remainingHp);
+            connectEnemy(medium);
+            enemies.insert(index + i, medium);
+        }
+
+        largeSlime->deleteLater();
+
+        emit enemiesChanged();
+        emit statsUpdated();
+        return;
     }
 
-    largeSlime->deleteLater();
+    if (auto* kingSlime = dynamic_cast<KingSlime*>(enemy))
+    {
+        if (!kingSlime->isSplitRequested())
+            return;
 
-    emit enemiesChanged();
-    emit statsUpdated();
+        int remainingHp = kingSlime->getCurrentHealth();
+
+        int index = enemies.indexOf(kingSlime);
+        if (index == -1)
+            return;
+
+        kingSlime->disconnect(this);
+        enemies.removeAt(index);
+
+        for (int i = 0; i < 2; ++i)
+        {
+            LargeSlime* large = new LargeSlime(remainingHp);
+            connectEnemy(large);
+            enemies.insert(index + i, large);
+        }
+
+        kingSlime->deleteLater();
+
+        emit enemiesChanged();
+        emit statsUpdated();
+    }
 }
 
 void CombatManager::handleCombatHeal()

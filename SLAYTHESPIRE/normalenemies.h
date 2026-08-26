@@ -106,7 +106,7 @@ class LargeSlime : public Enemy
 {
 public:
 
-    LargeSlime();
+    explicit LargeSlime(int hp = QRandomGenerator::global()->bounded(68, 73));
     virtual ~LargeSlime() override = default;
 
     virtual void chooseIntent(Player* player) override;

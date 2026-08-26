@@ -303,8 +303,8 @@ void MediumSlime::performLick(Player* player)
 
 
 
-LargeSlime::LargeSlime()
-    : Enemy("Large Slime", QRandomGenerator::global()->bounded(68, 73)),
+LargeSlime::LargeSlime(int hp)
+    : Enemy("Large Slime", hp),
     m_splitReady(false),
     m_splitExecuted(false),
     m_splitRequested(false)
