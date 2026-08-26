@@ -271,7 +271,7 @@ void CombatManager::handleTurnEnd()
             {
                 if (Burn* burn = dynamic_cast<Burn*>(card))
                 {
-                    CombatCalculator::dealDamage(nullptr, player, burn->getDamageAmount());
+                    player->loseHP(burn->getDamageAmount());
                 }
             }
         }
