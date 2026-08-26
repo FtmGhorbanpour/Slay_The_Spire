@@ -582,14 +582,18 @@ void Thief::executeMove(Player *player)
         break;
     }
 
-    // Turn 4 Escape
-    if(getTurnCount() >= 3)
-    {
-        // TODO CombatManager
-        // Remove this enemy from combat.
-        // If killed before escaping, return stolenGold to the player.
-    }
+    // Turn 4: this enemy escapes combat, keeping its stolen gold. Actual
+    // removal from the fight (and returning the gold if this Thief is
+    // killed before it manages to flee) is handled by
+    // CombatManager::handleEnemyFlee() / CombatManager::onEnemyDied(),
+    // which call hasFled() / getStolenGold() right after this method runs.
 }
+
+bool Thief::hasFled() const
+{
+    return getCurrentMove() == Flee && getTurnCount() >= 3;
+}
+
 
 
 //======================================================

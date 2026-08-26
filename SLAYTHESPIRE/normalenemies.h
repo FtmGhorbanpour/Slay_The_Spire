@@ -190,6 +190,8 @@ public:
     void chooseIntent(Player* player) override;
 
     void executeMove(Player *player) override;
+
+    bool hasFled() const;
 };
 
 class BlueSlaver : public Enemy
