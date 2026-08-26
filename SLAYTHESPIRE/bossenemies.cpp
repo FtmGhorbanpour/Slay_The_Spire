@@ -1,6 +1,8 @@
 #include "bossenemies.h"
 #include "player.h"
 #include "combatcalculator.h"
+#include "combatdeck.h"
+#include "statuscards.h"
 
 #include <QRandomGenerator>
 
@@ -67,6 +69,11 @@ void KingSlime::executeMove(Player *player)
         return;
     }
 
+    if(!m_splitExecuted && (getCurrentHealth() <= (getMaxHealth() / 2)))
+    {
+        m_splitReady = true;
+    }
+
     if(m_splitReady)
     {
         performSplit();
@@ -84,7 +91,7 @@ void KingSlime::executeMove(Player *player)
         break;
 
     case GoopSpray:
-        performGoopSpray();
+        performGoopSpray(player);
         break;
     }
 }
@@ -94,13 +101,14 @@ void KingSlime::performSlam(Player* player)
 
      CombatCalculator::dealDamage(this, player, 35);
 }
-void KingSlime::performGoopSpray()
+void KingSlime::performGoopSpray(Player* player)
 {
-    // TODO CombatDeck
-    // Add 3 SLIME status cards to the player's Discard Pile.
-    // combatDeck->addToDiscardPile(new Slime());
-    // combatDeck->addToDiscardPile(new Slime());
-    // combatDeck->addToDiscardPile(new Slime());
+    if (!player)
+        return;
+
+    player->addCardToDiscardPile(new Slime());
+    player->addCardToDiscardPile(new Slime());
+    player->addCardToDiscardPile(new Slime());
 }
 void KingSlime::performSplit()
 {

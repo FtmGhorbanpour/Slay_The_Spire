@@ -25,7 +25,7 @@ public:
 
 private:
     void performSlam(Player* player);
-    void performGoopSpray();
+    void performGoopSpray(Player* player);
     void performSplit();
 };
 
