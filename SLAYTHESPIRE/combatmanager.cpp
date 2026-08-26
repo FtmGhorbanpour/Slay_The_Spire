@@ -4,6 +4,7 @@
 #include "player.h"
 #include "enemy.h"
 #include "card.h"
+#include "skillcards.h"
 #include "potion.h"
 #include "combatcalculator.h"
 #include "combatdeck.h"
@@ -185,7 +186,7 @@ bool CombatManager::playCard(Card* card, Enemy* target)
     emit cardPlayed(card, target);
     player->getRelicSystem().onCardPlayed(player, card);
 
-    if (card->getName() == "Exhume")
+    if (dynamic_cast<Exhume*>(card) != nullptr)
     {
         beginExhumeSelection(card);
         emit statsUpdated();
