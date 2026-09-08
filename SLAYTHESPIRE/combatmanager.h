@@ -89,6 +89,8 @@ private:
 
     void handleEnemySplit(Enemy* enemy);
 
+    bool handleEnemyFlee(Enemy* enemy);
+
     void handleCombatHeal();
 
 

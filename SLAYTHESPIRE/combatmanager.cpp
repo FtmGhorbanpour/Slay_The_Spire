@@ -357,10 +357,15 @@ void CombatManager::handleEnemyTurn()
         enemy->executeMove(player);
 
         handleEnemySplit(enemy);
+        bool fled = handleEnemyFlee(enemy);
 
         if (!enemies.contains(enemy))
         {
-            i += 1;
+            // A split replaces 1 enemy with 2 (net +1), so skip past both
+            // newcomers. A flee just removes 1 enemy (net -1), so instead
+            // step back one index - otherwise the enemy that shifted into
+            // this slot would be skipped for the rest of this turn.
+            i += fled ? -1 : 1;
         }
 
         emit statsUpdated();
@@ -458,6 +463,13 @@ void CombatManager::onEnemyDied(Enemy* enemy)
     if (!enemy)
     {
         return;
+    }
+
+    if (Thief* thief = dynamic_cast<Thief*>(enemy))
+    {
+        int stolen = thief->getStolenGold();
+        if (stolen > 0 && player)
+            player->gainGold(stolen);
     }
 
     player->getRelicSystem().onEnemyDeath(player, enemy);
@@ -650,35 +662,6 @@ void CombatManager::cleanupAfterCombat()
 
 void CombatManager::handleEnemySplit(Enemy* enemy)
 {
-    // auto* largeSlime = dynamic_cast<LargeSlime*>(enemy);
-
-    // if (!largeSlime || !largeSlime->isSplitRequested())
-    //     return;
-
-    // int remainingHp = largeSlime->getCurrentHealth();
-
-    // int index = enemies.indexOf(largeSlime);
-    // if (index == -1)
-    //     return;
-
-    // largeSlime->disconnect(this);
-    // enemies.removeAt(index);
-
-    // for (int i = 0; i < 2; ++i)
-    // {
-
-    //     MediumSlime* medium = new MediumSlime(remainingHp);
-
-    //     connectEnemy(medium);
-
-    //     enemies.insert(index + i, medium);
-    // }
-
-    // largeSlime->deleteLater();
-
-    // emit enemiesChanged();
-    // emit statsUpdated();
-
     if (auto* largeSlime = dynamic_cast<LargeSlime*>(enemy))
     {
         if (!largeSlime->isSplitRequested())
@@ -733,6 +716,27 @@ void CombatManager::handleEnemySplit(Enemy* enemy)
         emit enemiesChanged();
         emit statsUpdated();
     }
+}
+
+bool CombatManager::handleEnemyFlee(Enemy* enemy)
+{
+    Thief* thief = dynamic_cast<Thief*>(enemy);
+
+    if (!thief || !thief->hasFled())
+        return false;
+
+    int index = enemies.indexOf(thief);
+    if (index == -1)
+        return false;
+
+    thief->disconnect(this);
+    enemies.removeAt(index);
+    thief->deleteLater();
+
+    emit enemiesChanged();
+    emit statsUpdated();
+
+    return true;
 }
 
 void CombatManager::handleCombatHeal()
