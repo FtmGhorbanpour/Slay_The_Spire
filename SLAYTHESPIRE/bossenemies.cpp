@@ -103,9 +103,8 @@ void KingSlime::performSlam(Player* player)
 }
 void KingSlime::performGoopSpray(Player* player)
 {
-    if (!player)
-        return;
-
+    if(!player) return;
+    
     player->addCardToDiscardPile(new Slime());
     player->addCardToDiscardPile(new Slime());
     player->addCardToDiscardPile(new Slime());
@@ -274,8 +273,7 @@ void HexaGhost::performSear(Player* player)
 
      CombatCalculator::dealDamage(this, player, 6);
 
-    // TODO CombatDeck
-    // combatDeck->addToDiscardPile(new Burn());
+    player->addCardToDiscardPile(new Burn());
 }
 void HexaGhost::performTackle(Player* player)
 {
@@ -297,13 +295,31 @@ void HexaGhost::performInferno(Player* player)
 
     for(int i = 0; i < getIntentHits(); i++)
     {
-         CombatCalculator::dealDamage(this, player, 2);
+        CombatCalculator::dealDamage(this, player, 2);
     }
 
-    // combatDeck->addToDiscardPile(new Burn());
-    // combatDeck->addToDiscardPile(new Burn());
-    // combatDeck->addToDiscardPile(new Burn());
-    // combatDeck->upgradeAllOfType<Burn>();  // needs Deck-side support
+    // "All previous BURNs become BURN+": upgrade any Burn already sitting
+    // in any pile BEFORE adding the 3 fresh (still un-upgraded) ones below.
+    if (CombatDeck* deck = player->getCombatDeck())
+    {
+        auto upgradeExistingBurns = [](const QVector<Card*>& pile)
+        {
+            for (Card* card : pile)
+            {
+                if (Burn* burn = dynamic_cast<Burn*>(card))
+                    burn->upgrade();
+            }
+        };
+
+        upgradeExistingBurns(deck->getDrawPile());
+        upgradeExistingBurns(deck->getHand());
+        upgradeExistingBurns(deck->getDiscardPile());
+        upgradeExistingBurns(deck->getExhaustPile());
+    }
+
+    player->addCardToDiscardPile(new Burn());
+    player->addCardToDiscardPile(new Burn());
+    player->addCardToDiscardPile(new Burn());
 }
 
 
