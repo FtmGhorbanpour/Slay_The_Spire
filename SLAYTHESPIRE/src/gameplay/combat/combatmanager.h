@@ -103,6 +103,8 @@ private:
     CombatCalculator* calculator;
     int turnCount;
 
+    bool isBossFight = false;
+
     Card* pendingExhumeCard = nullptr;
     bool waitingForExhumeSelection = false;
 

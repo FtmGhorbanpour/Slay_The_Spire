@@ -30,6 +30,20 @@ CombatManager::CombatManager(Player* p, QVector<Enemy*> e, QObject* parent)
     {
         connectEnemy(enemy);
     }
+
+    for (Enemy* enemy : std::as_const(enemies))
+    {
+        if (!enemy)
+            continue;
+
+        const QString name = enemy->getName();
+
+        if (name == "King Slime" || name == "HexaGhost" || name == "The Champ")
+        {
+            isBossFight = true;
+            break;
+        }
+    }
 }
 
 CombatManager::~CombatManager()
@@ -706,7 +720,7 @@ void CombatManager::handleEnemySplit(Enemy* enemy)
 
         for (int i = 0; i < 2; ++i)
         {
-            LargeSlime* large = new LargeSlime(remainingHp);
+            LargeSlime* large = new LargeSlime(remainingHp, false);
             connectEnemy(large);
             enemies.insert(index + i, large);
         }
@@ -741,25 +755,7 @@ bool CombatManager::handleEnemyFlee(Enemy* enemy)
 
 void CombatManager::handleCombatHeal()
 {
-    bool bossFight = false;
-
-    for (Enemy* enemy : std::as_const(enemies))
-    {
-        if (!enemy)
-            continue;
-
-        const QString name = enemy->getName();
-
-        if (name == "King Slime" ||
-            name == "HexaGhost" ||
-            name == "The Champ")
-        {
-            bossFight = true;
-            break;
-        }
-    }
-
-    if (player && bossFight)
+    if (player && isBossFight)
     {
         player->heal(player->getMaxHealth());
     }

@@ -303,17 +303,18 @@ void MediumSlime::performLick(Player* player)
 
 
 
-LargeSlime::LargeSlime(int hp)
+LargeSlime::LargeSlime(int hp, bool canSplit)
     : Enemy("Large Slime", hp),
     m_splitReady(false),
     m_splitExecuted(false),
-    m_splitRequested(false)
+    m_splitRequested(false),
+    m_canSplit(canSplit)
 {
 }
 
 void LargeSlime::chooseIntent(Player* player)
 {
-    if (!m_splitExecuted && getCurrentHealth() <= getMaxHealth() / 2)
+    if (m_canSplit && !m_splitExecuted && getCurrentHealth() <= getMaxHealth() / 2)
     {
         m_splitReady = true;
     }
@@ -354,6 +355,17 @@ void LargeSlime::chooseIntent(Player* player)
 
 void LargeSlime::executeMove(Player* player)
 {
+    if (m_canSplit && !m_splitExecuted && getCurrentHealth() <= getMaxHealth() / 2)
+    {
+        m_splitReady = true;
+    }
+
+    if (m_splitReady)
+    {
+        performSplit();
+        return;
+    }
+
     switch (getCurrentMove())
     {
     case Move::CorrosiveSpit:

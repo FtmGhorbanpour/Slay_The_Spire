@@ -106,7 +106,8 @@ class LargeSlime : public Enemy
 {
 public:
 
-    explicit LargeSlime(int hp = QRandomGenerator::global()->bounded(68, 73));
+    explicit LargeSlime(int hp = QRandomGenerator::global()->bounded(68, 73),
+                        bool canSplit = true);
     virtual ~LargeSlime() override = default;
 
     virtual void chooseIntent(Player* player) override;
@@ -132,6 +133,8 @@ private:
     bool m_splitReady;      // True if HP <= 50% and locked into Split intent for the next turn
     bool m_splitExecuted;   // True once the Split move has run to prevent multiple activations
     bool m_splitRequested;  // Signal flagged to notify CombatManager to perform array substitution
+
+    bool m_canSplit;        // false برای Large Slime‌هایی که از Split شدن King Slime به وجود آمده‌اند
 };
 
 
