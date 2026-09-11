@@ -1,0 +1,175 @@
+#ifndef GAMEMANAGER_H
+#define GAMEMANAGER_H
+
+#include <QObject>
+#include <QStackedWidget>
+#include <QVector>
+#include <QString>
+
+#include "leaderboardmanager.h"
+#include "map/mapnode.h"        // NodeType
+#include "entities/enemyfactory.h"   // EnemyFactory::EncounterId
+
+class SplashPage;
+class loginpage;
+class mainpage;
+class MapPage;
+class BattlePage;
+class CampfirePage;
+class RewardPage;
+class RewardSystem;
+class Player;
+class Map;
+class Enemy;
+class PauseDialog;
+class TreasurePage;
+class ShopPage;
+class EventManager;
+class EventPage;
+class Event;
+class MemoryGameWidget;
+class TreasureGuessPage;
+class QDialog;
+class LeaderboardPage;
+class DefeatPage;
+
+
+
+
+class GameManager : public QObject
+{
+    Q_OBJECT
+
+public:
+    explicit GameManager(QStackedWidget* stackedWidget, QObject* parent = nullptr);
+    ~GameManager() override;
+
+    // Call once, right after construction, to show the Splash page.
+    void start();
+
+private:
+
+    enum class EncounterKind
+    {
+        Normal,
+        Elite,
+        Boss
+    };
+
+    // ---- Core ----
+    QStackedWidget* stackedWidget;
+
+    // ---- Pages (owned & shown/hidden only by GameManager) ----
+    SplashPage*   splashPage   = nullptr;
+    loginpage*    loginPage    = nullptr;
+    mainpage*     mainMenuPage = nullptr;
+    MapPage*      mapPage      = nullptr;
+    BattlePage*   battlePage   = nullptr;
+    CampfirePage* campfirePage = nullptr;
+    RewardPage*   rewardPage   = nullptr;
+    TreasurePage* treasurePage = nullptr;
+    ShopPage*     shopPage     = nullptr;
+    EventPage*    eventPage    = nullptr;
+    LeaderboardPage* leaderboardPage = nullptr;
+    DefeatPage* defeatPage = nullptr;
+
+
+
+    // ---- Mini Games (Floor 9) ----
+    MemoryGameWidget*  memoryGamePage    = nullptr;
+    TreasureGuessPage* treasureGuessPage = nullptr;
+
+    // ---- Reward Dialog ----
+    // RewardPage is hosted inside this modal QDialog instead of being
+    QDialog* rewardDialog = nullptr;
+
+    // ---- Run state ----
+    QString currentUsername;
+    Player* player = nullptr;
+    Map*    map    = nullptr;
+
+    RewardSystem* pendingRewardSystem = nullptr;
+    EventManager* eventManager = nullptr;
+    Event*        currentEvent = nullptr;
+    EncounterKind currentEncounterKind = EncounterKind::Normal;
+
+    // ---- Encounter selection bookkeeping (reset every Act) ----
+    QVector<EnemyFactory::EncounterId> usedFirstEncounters;
+    int normalEncounterCount = 0;
+
+    // ---- Setup ----
+    void createStaticPages();
+    void connectStaticPages();
+
+    // ---- Page navigation (the only place pages are shown) ----
+    void showSplashPage();
+    void showLoginPage();
+    void showMainMenuPage();
+    void showMapPage();
+    void showCampfirePage();
+    void showRewardPage(RewardSystem* rewardSystem);
+    void showBattlePage(const QVector<Enemy*>& enemies);
+
+    void cleanupTransientPages(); // battlePage / rewardPage / campfirePage / TreasurePage / ShopPage / EventPage / Mini Games
+
+    // ---- Hooks for pages that don't exist yet ----
+    // (Not implemented on purpose - wire the real UI to these once it exists.)
+    void showShopPage();
+    void showTreasurePage();
+    void showEventPage();
+    void showVictoryPage();
+    void showLeaderboardPage(bool openedFromDefeat = false);
+    void showDefeatPage();
+    void updateLeaderboard(RunStatus status);
+
+    // ---- Mini Games (Floor 9) ----
+    void showMiniGamePage();
+    void showMemoryGamePage();
+    void showTreasureGuessPage();
+
+    // ---- Run lifecycle ----
+    void createNewRun(const QString& username);
+    void loadRun(const QString& username);
+    void cleanupRun();
+    void autoSave();
+
+    // ---- Encounter selection (GameManager decides WHICH, EnemyFactory builds) ----
+    void setupActEncounterPools();
+    QVector<Enemy*> selectNormalEncounter();
+    QVector<Enemy*> selectEliteEncounter();
+    QVector<Enemy*> selectBossEncounter();
+
+    void startBattle(const QVector<Enemy*>& enemies, EncounterKind kind);
+    void returnToMapAndAutosave();
+
+    // ---- Slots (connected to existing pages' existing signals) ----
+    void handleAuthAttempt();
+    void handleRegisterAttempt();
+    void onStartGameRequested();
+    void onSettingsRequested();
+    void onMapNodeEntered(NodeType type);
+    void onCombatResult(bool playerWon);
+    void handlePlayerDefeat();
+    void onRewardContinue();
+    void onBossDefeated();
+    void onCampfireLeft();
+    void onTreasureFinished();
+    void onMapPauseRequested();
+    void onEventResolved();
+
+    // ---- Mini Game result slots ----
+    void onMemoryGameWon();
+    void onMemoryGameLost();
+    void onTreasureGuessProceed();
+
+    // Hook: connect this to the (future) Defeat/Victory page's
+    // "Return to Main Menu" button.
+    void onReturnToMainMenuRequested();
+
+private slots:
+    void onDefeatLeaderboardRequested();
+    void onLeaderboardBackRequestedAfterDefeat();
+
+};
+
+#endif // GAMEMANAGER_H
