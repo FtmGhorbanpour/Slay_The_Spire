@@ -1,0 +1,227 @@
+#include "treasurepage.h"
+#include "campfirepage.h"
+#include "entities/player.h"
+#include "map/map.h"
+#include "events/reward.h"
+#include "items/relic.h"
+#include "items/potion.h"
+#include "audiomanager.h"
+#include "components/relicviewer.h"
+#include "components/deckviewer.h"
+#include "components/relicviewer.h"
+#include <QVBoxLayout>
+#include <QDir>
+#include <QCoreApplication>
+
+TreasurePage::TreasurePage(Player* playerPtr, Map* mapPtr, QWidget* parent)
+    : QWidget(parent), player(playerPtr), map(mapPtr), chestOpened(false)
+{
+    setupUI();
+    topBar->updateData(player, map);
+    treasureManager.generateReward(player);
+}
+
+void TreasurePage::setupUI()
+{
+    setObjectName("TreasurePage");
+    setStyleSheet(
+        "#TreasurePage {"
+        "background-image: url(:/Treasure/TreasureBackground.png);"
+        "background-repeat: no-repeat;"
+        "background-position: center;"
+        "background-color: #1a1410;"
+        "}"
+        "QToolTip { color: #facc15; background-color: #1f2937; border: 1px solid #b91c1c;"
+        "border-radius: 4px; padding: 6px; font-weight: bold; font-family: Tahoma;"
+        "}"
+        );
+    setFixedSize(1280, 720);
+
+    QPixmap pixmap(":/cursor.png");
+    QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QCursor customCursor(scaledPixmap, 0, 0);
+    this->setCursor(customCursor);
+
+    QString baseDir = QCoreApplication::applicationDirPath();
+    QString BtnPath = QDir(baseDir).filePath("assets/image/cursorBtn.png");
+    QPixmap buttonHoverPixmap(BtnPath);
+    QPixmap scaledHover = buttonHoverPixmap.scaled(40, 61, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QCursor buttonHoverCursor(scaledHover, scaledHover.width() / 2, 10);
+
+    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
+    mainLayout->setSpacing(0);
+
+    // --- Top Bar: same widget CampfirePage uses, not a new one ---
+    topBar = new TopBarWidget(this);
+    connect(topBar, &TopBarWidget::relicClicked, this, &TreasurePage::onRelicButtonClicked);
+    connect(topBar, &TopBarWidget::deckClicked, this, &TreasurePage::onDeckButtonClicked);
+    connect(topBar, &TopBarWidget::settingsClicked, this, &TreasurePage::onSettingsButtonClicked);
+    mainLayout->addWidget(topBar);
+
+    mainLayout->addStretch();
+
+    // --- Reward button: hidden until the chest is opened ---
+    rewardBtn = new QPushButton(this);
+    rewardBtn->setFixedSize(110, 110);
+    rewardBtn->setCursor(buttonHoverCursor);
+    rewardBtn->hide();
+    rewardBtn->move(560, 220);
+    connect(rewardBtn, &QPushButton::pressed, this, []() {
+        AudioManager::instance().play(AudioManager::Sound::ButtonClick);
+    });
+    connect(rewardBtn, &QPushButton::clicked, this, &TreasurePage::onRewardClicked);
+
+    // --- Chest ---
+    chestBtn = new QPushButton(this);
+    chestBtn->setFixedSize(730, 450);
+    chestBtn->setCursor(buttonHoverCursor);
+    connect(chestBtn, &QPushButton::pressed, this, []() {
+        AudioManager::instance().play(AudioManager::Sound::ButtonClick);
+    });
+    connect(chestBtn, &QPushButton::clicked, this, &TreasurePage::onChestClicked);
+
+    // --- Back ---
+    backBtn = new QPushButton(this);
+    backBtn->setFixedSize(180, 80);
+    backBtn->setCursor(buttonHoverCursor);
+    backBtn->setStyleSheet(
+        "QPushButton { border-image: url(:/Treasure/ProceedBtn.png); border: none; background: transparent; }"
+        "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
+        );
+    connect(backBtn, &QPushButton::pressed, this, []() {
+        AudioManager::instance().play(AudioManager::Sound::ButtonClick);
+    });
+    connect(backBtn, &QPushButton::clicked, this, &TreasurePage::onBackClicked);
+    backBtn->move(1050, 550);
+
+    refreshChestVisual();
+}
+
+void TreasurePage::refreshChestVisual()
+{
+    QString imagePath = chestOpened ? ":/Treasure/ChestOpen.png" : ":/Treasure/ChestClose.png";
+
+    chestBtn->setStyleSheet(
+        QString("QPushButton { border-image: url(%1); border: none; background: transparent; }"
+                "QPushButton:pressed { margin: 5px 5px 5px 5px; }").arg(imagePath)
+        );
+
+    if(chestOpened)
+    {
+        chestBtn->move(220, 70);
+        chestBtn->setFixedSize(780, 600);
+
+    }
+    else
+    {
+        chestBtn->move(250, 170);
+    }
+}
+
+void TreasurePage::refreshRewardVisual()
+{
+    Reward* reward = treasureManager.getReward();
+
+    if (!reward)
+    {
+        rewardBtn->hide();
+        return;
+    }
+
+    QString tip = "Reward";
+
+    switch (reward->getType())
+    {
+    case RewardType::Gold:
+        rewardBtn->setStyleSheet(
+            "QPushButton { border-image: url(:/Treasure/Money.png); border: none; background: transparent; }"
+            "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
+            );
+        tip = QString("Gold  +%1").arg(reward->getGoldAmount());
+        break;
+
+    case RewardType::Potion:
+        if (reward->getPotion())
+        {
+            QString potionName = reward->getPotion()->getName().toLower().replace(" ", "_");
+            QString iconPath = QString(":/Potion/%1.png").arg(potionName);
+            rewardBtn->setStyleSheet(
+                QString("QPushButton { border-image: url(%1); border: none; background: transparent; }"
+                        "QPushButton:pressed { margin: 5px 5px 5px 5px; }").arg(iconPath)
+                );
+            tip = reward->getPotion()->getName();
+        }
+        break;
+
+    case RewardType::Relic:
+        if (reward->getRelic())
+        {
+            rewardBtn->setStyleSheet(
+                QString("QPushButton { border-image: url(%1); border: none; background: transparent; }"
+                        "QPushButton:pressed { margin: 5px 5px 5px 5px; }").arg(RelicViewerDialog::relicIconPath(reward->getRelic()))
+                );
+            tip = reward->getRelic()->getName();
+        }
+        break;
+
+    case RewardType::Card:
+        break; // never happens for Treasure rewards
+    }
+
+    rewardBtn->setToolTip(tip);
+    rewardBtn->raise();
+    rewardBtn->show();
+}
+
+void TreasurePage::onChestClicked()
+{
+    if (chestOpened)
+        return;
+
+    chestOpened = true;
+    chestBtn->setEnabled(false); // opens exactly once
+
+    refreshChestVisual();
+    refreshRewardVisual();
+}
+
+void TreasurePage::onRewardClicked()
+{
+    if (!treasureManager.claimReward(player))
+        return;
+
+    AudioManager::instance().play(AudioManager::Sound::Reward);
+
+    rewardBtn->hide(); // can't be claimed a second time
+    topBar->updateData(player, map); // reflect new HP/Gold/Potions/Relics immediately
+}
+
+void TreasurePage::onBackClicked()
+{
+    if (!treasureManager.isClaimed())
+    {
+        // Reward was never picked up - it's lost for good, nothing is
+        // added to the player.
+        treasureManager.discardReward();
+    }
+
+    emit treasureFinished();
+}
+
+void TreasurePage::onRelicButtonClicked()
+{
+    RelicViewerDialog dialog(player, this);
+    dialog.exec();
+}
+
+void TreasurePage::onDeckButtonClicked()
+{
+    DeckViewerDialog dialog(player, this);
+    dialog.exec();
+}
+
+void TreasurePage::onSettingsButtonClicked()
+{
+    emit settingsRequested();
+}
