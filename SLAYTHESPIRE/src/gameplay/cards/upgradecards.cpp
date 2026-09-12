@@ -36,7 +36,7 @@ QString UpgradePreviewDialog::UpgradeCardImagePath(const Card* card)
     if (cleanName.endsWith('+'))
         cleanName.chop(1);
 
-    return QString(":/card/%1Plus.png").arg(cleanName);
+    return QString(":/card/assets/cards/%1Plus.png").arg(cleanName);
 }
 
 void UpgradePreviewDialog::setupUI()
@@ -153,7 +153,7 @@ void UpgradeCardsDialog::setupUI()
 {
     setWindowTitle("Upgrade Cards");
     setFixedSize(917, 620);
-    setStyleSheet("QDialog { border-image: url(:/card/CardViewer.png); }"
+    setStyleSheet("QDialog { border-image: url(:/card/assets/cards/CardViewer.png); }"
                   "QScrollArea { border: none; background: transparent; }"
                   );
 

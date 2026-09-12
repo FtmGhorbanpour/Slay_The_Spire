@@ -30,7 +30,7 @@ void RemoveCardDialog::setupUI()
 {
     setWindowTitle("Remove a Card");
     setFixedSize(917, 620);
-    setStyleSheet("QDialog { border-image: url(:/card/CardViewer.png); }"
+    setStyleSheet("QDialog { border-image: url(:/card/assets/cards/CardViewer.png); }"
                   "QScrollArea { border: none; background: transparent; }");
 
     QPixmap pixmap(":/cursor.png");
@@ -203,7 +203,7 @@ void TransformCardsDialog::setupUI()
 {
     setWindowTitle("Transform 2 Cards");
     setFixedSize(917, 620);
-    setStyleSheet("QDialog { border-image: url(:/card/CardViewer.png); }"
+    setStyleSheet("QDialog { border-image: url(:/card/assets/cards/CardViewer.png); }"
                   "QScrollArea { border: none; background: transparent; }");
 
     QPixmap pixmap(":/cursor.png");
