@@ -127,7 +127,7 @@ QString Effect::getTooltip() const
         return QString("At the start of your turn, gain %1 Strength.").arg(amount);
 
     case Type::Brutality:
-        return QString("At the start of your turn, lose %1 HP and draw 1 card.").arg(amount);
+        return QString("At the start of your turn, lose %1 HP and draw %1 card.").arg(amount);
 
     case Type::Barricade:
         return QString("Block is not removed at the start of your turn.");
@@ -236,7 +236,7 @@ void Effect::onTurnStart(Character *target)
         if (Player* p = dynamic_cast<Player*>(target))
         {
             p->loseHP(amount);
-            p->drawCards(1);
+            p->drawCards(amount);
         }
         break;
 

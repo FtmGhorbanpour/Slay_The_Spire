@@ -36,17 +36,17 @@ QString UpgradePreviewDialog::UpgradeCardImagePath(const Card* card)
     if (cleanName.endsWith('+'))
         cleanName.chop(1);
 
-    return QString(":/card/assets/cards/%1Plus.png").arg(cleanName);
+    return QString(":/assets/cards/%1Plus.png").arg(cleanName);
 }
 
 void UpgradePreviewDialog::setupUI()
 {
     setWindowTitle("Upgrade Card");
     setFixedSize(700, 500);
-    setStyleSheet("QDialog { border-image: url(:/RestSite/UpgradeViewer.png); border: none; background: transparent; }"
+    setStyleSheet("QDialog { border-image: url(:/assets/RestSite/UpgradeViewer.png); border: none; background: transparent; }"
                   );
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -73,7 +73,7 @@ void UpgradePreviewDialog::setupUI()
 
     QLabel* arrowLabel = new QLabel();
     arrowLabel->setFixedSize(180, 100);
-    arrowLabel->setStyleSheet("border-image: url(:/RestSite/FlashLabel.png); background: transparent;");
+    arrowLabel->setStyleSheet("border-image: url(:/assets/RestSite/FlashLabel.png); background: transparent;");
     arrowLabel->setAlignment(Qt::AlignCenter);
 
     QLabel* upgradedImage = new QLabel();
@@ -95,7 +95,7 @@ void UpgradePreviewDialog::setupUI()
     QPushButton* upgradeBtn = new QPushButton();
     upgradeBtn->setObjectName("upgradeConfirmBtn");
     upgradeBtn->setFixedSize(150, 100);
-    upgradeBtn->setStyleSheet("QPushButton { border-image: url(:/RestSite/YesBtn.png); }"
+    upgradeBtn->setStyleSheet("QPushButton { border-image: url(:/assets/RestSite/YesBtn.png); }"
                               "QPushButton:pressed { "
                               "   margin: 5px 5px 5px 5px; "
                               "}");
@@ -104,7 +104,7 @@ void UpgradePreviewDialog::setupUI()
     QPushButton* cancelBtn = new QPushButton();
     cancelBtn->setObjectName("upgradeCancelBtn");
     cancelBtn->setFixedSize(150, 100);
-    cancelBtn->setStyleSheet("QPushButton { border-image: url(:/RestSite/NoBtn.png); }"
+    cancelBtn->setStyleSheet("QPushButton { border-image: url(:/assets/RestSite/NoBtn.png); }"
                              "QPushButton:pressed { "
                              "   margin: 5px 5px 5px 5px; "
                              "}");
@@ -153,7 +153,7 @@ void UpgradeCardsDialog::setupUI()
 {
     setWindowTitle("Upgrade Cards");
     setFixedSize(917, 620);
-    setStyleSheet("QDialog { border-image: url(:/card/assets/cards/CardViewer.png); }"
+    setStyleSheet("QDialog { border-image: url(:/assets/cards/CardViewer.png); }"
                   "QScrollArea { border: none; background: transparent; }"
                   );
 
@@ -177,7 +177,7 @@ void UpgradeCardsDialog::populateCards()
     if (!player || !player->getMasterDeck())
         return;
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);

@@ -183,7 +183,7 @@ void MapWidget::updateNodeStyles()
 
 void MapWidget::refreshUI() {
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -247,7 +247,7 @@ QString MapWidget::getNodeStyleSheet(MapNode* node) {
     case NodeType::MiniGame: typeStr = "minigame"; break;
     }
 
-    QString imagePath = QString(":/map/%1_%2.png").arg(typeStr, stateStr);
+    QString imagePath = QString(":/assets/map/%1_%2.png").arg(typeStr, stateStr);
 
     return QString(
                "QPushButton {"

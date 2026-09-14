@@ -32,7 +32,7 @@ void TopBarWidget::setupUI()
         );
     setAttribute(Qt::WA_StyledBackground, true);
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -65,7 +65,7 @@ void TopBarWidget::setupUI()
     relicBtn->setStyleSheet(
         "QPushButton {"
         "border: none;"
-        "border-image: url(:/map/relicIcon.png);"
+        "border-image: url(:/assets/map/relicIcon.png);"
         "}"
         "QPushButton:pressed { "
         "   margin: 3px 3px 3px 3px; "
@@ -98,7 +98,7 @@ void TopBarWidget::setupUI()
     for (int i = 0; i < 3; ++i) {
         potionSlots[i] = new QLabel();
         potionSlots[i]->setFixedSize(32, 32);
-        potionSlots[i]->setStyleSheet("border-image: url(:/Potion/potionEmpty.png); background: transparent;");
+        potionSlots[i]->setStyleSheet("border-image: url(:/assets/Potion/potionEmpty.png); background: transparent;");
         potionsLayout->addWidget(potionSlots[i]);
     }
 
@@ -123,7 +123,7 @@ void TopBarWidget::setupUI()
     floorIconLabel = new QLabel();
     floorIconLabel->setFixedSize(24, 24);
     floorIconLabel->setStyleSheet(
-        "border-image: url(:/map/floorIcon.png); background: transparent;");
+        "border-image: url(:/assets/map/floorIcon.png); background: transparent;");
 
     floorNumberLabel = new QLabel("0");
     floorNumberLabel->setStyleSheet("font-size: 18px; font-weight: bold; color: " + BONE_COLOR + ";");
@@ -143,7 +143,7 @@ void TopBarWidget::setupUI()
     deckBtn->setStyleSheet(
         "QPushButton {"
         "border: none;"
-        "border-image: url(:/map/cardsBtn.png);"
+        "border-image: url(:/assets/map/cardsBtn.png);"
         "}"
         "QPushButton:pressed { "
         "   margin: 5px 5px 5px 5px; "
@@ -166,7 +166,7 @@ void TopBarWidget::setupUI()
     settingsBtn->setFixedSize(45, 45);
     settingsBtn->setCursor(buttonHoverCursor);
     settingsBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/map/settingBtnMap.png); }"
+        "QPushButton { border-image: url(:/assets/map/settingBtnMap.png); }"
         "QPushButton:pressed { "
         "   margin: 5px 5px 5px 5px; "
         "}"
@@ -247,10 +247,10 @@ void TopBarWidget::updateData(Player* player, Map* map)
     for (int i = 0; i < 3; ++i) {
         if (i < player->getPotionCount() && player->getPotion(i) != nullptr) {
             QString potionName = player->getPotion(i)->getName().toLower().replace(" ", "_");
-            QString iconPath = QString(":/Potion/%1.png").arg(potionName);
+            QString iconPath = QString(":/assets/Potion/%1.png").arg(potionName);
             potionSlots[i]->setStyleSheet(QString("border-image: url(%1); background: transparent;").arg(iconPath));
         } else {
-            potionSlots[i]->setStyleSheet("border-image: url(:/Potion/potionEmpty.png); background: transparent;");
+            potionSlots[i]->setStyleSheet("border-image: url(:/assets/Potion/potionEmpty.png); background: transparent;");
         }
     }
 }
@@ -275,7 +275,7 @@ void CampfirePage::setupUI()
     setObjectName("CampfirePage");
     setStyleSheet(
         "#CampfirePage {"
-        "background-image: url(:/RestSite/RestSite.png);"
+        "background-image: url(:/assets/RestSite/RestSite.png);"
         "background-repeat: no-repeat;"
         "background-position: center;"
         "background-color: #1a1410;"
@@ -285,7 +285,7 @@ void CampfirePage::setupUI()
         "}"
         );
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -319,8 +319,8 @@ void CampfirePage::setupUI()
         btn->setFixedSize(180, 130);
         btn->setCursor(buttonHoverCursor);
         btn->setStyleSheet(
-            QString("QPushButton { border-image: url(:/RestSite/%1.png); border: none; background: transparent; }"
-            "QPushButton:disabled { border-image: url(:/RestSite/%1Dis.png); border: none; background: transparent; }"
+            QString("QPushButton { border-image: url(:/assets/RestSite/%1.png); border: none; background: transparent; }"
+            "QPushButton:disabled { border-image: url(:/assets/RestSite/%1Dis.png); border: none; background: transparent; }"
             "QPushButton:pressed { margin: 5px 5px 5px 5px; }" ).arg(objectName)
             );
         connect(btn, &QPushButton::pressed, this, []() {
@@ -339,7 +339,7 @@ void CampfirePage::setupUI()
     leaveBtn->move(0, 450);
     leaveBtn->setCursor(buttonHoverCursor);
     leaveBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/RestSite/BackBtn.png); border: none; background: transparent; }"
+        "QPushButton { border-image: url(:/assets/RestSite/BackBtn.png); border: none; background: transparent; }"
         "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
         );
     connect(leaveBtn, &QPushButton::pressed, this, []() {

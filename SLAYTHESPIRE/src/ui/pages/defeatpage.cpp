@@ -34,13 +34,13 @@ DefeatPage::DefeatPage(Player* player, Map* map, const QString& username, QWidge
 void DefeatPage::loadAssets()
 {
     QString baseDir = QCoreApplication::applicationDirPath();
-    QString backgroundPath = QDir(baseDir).filePath(":/DefeatBackground.png");
+    QString backgroundPath = QDir(baseDir).filePath(":/assets/map/DefeatBackground.png");
     backgroundPixmap.load(backgroundPath);
 }
 
 void DefeatPage::setupUi()
 {
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);

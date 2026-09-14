@@ -31,7 +31,7 @@ void TreasureGuessPage::setupUI()
     setObjectName("TreasureGuessPage");
     setStyleSheet(
         "#TreasureGuessPage {"
-        "background-image: url(:/Treasure/TreasureBackground.png);"
+        "background-image: url(:/assets/Treasure/TreasureBackground.png);"
         "background-repeat: no-repeat;"
         "background-position: center;"
         "background-color: #1a1410;"
@@ -41,7 +41,7 @@ void TreasureGuessPage::setupUI()
         "}"
         );
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -92,7 +92,7 @@ void TreasureGuessPage::setupUI()
         chestBtn->setFixedSize(350, 250);
         chestBtn->setCursor(buttonHoverCursor);
         chestBtn->setStyleSheet(
-            "QPushButton { border-image: url(:/Treasure/ChestClose.png); border: none; background: transparent; }"
+            "QPushButton { border-image: url(:/assets/Treasure/ChestClose.png); border: none; background: transparent; }"
             "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
             );
 
@@ -128,7 +128,7 @@ void TreasureGuessPage::setupUI()
     proceedBtn->setCursor(buttonHoverCursor);
     proceedBtn->hide();
     proceedBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/Treasure/ProceedBtn.png); border: none; background: transparent; }"
+        "QPushButton { border-image: url(:/assets/Treasure/ProceedBtn.png); border: none; background: transparent; }"
         "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
         );
     connect(proceedBtn, &QPushButton::pressed, this, []() {
@@ -168,7 +168,7 @@ void TreasureGuessPage::refreshChestVisual(int index)
         return;
 
     chestButtons[index]->setStyleSheet(
-        "QPushButton { border-image: url(:/Treasure/ChestOpen.png); border: none; background: transparent; }"
+        "QPushButton { border-image: url(:/assets/Treasure/ChestOpen.png); border: none; background: transparent; }"
         "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
         );
 }
@@ -177,13 +177,13 @@ void TreasureGuessPage::showReward()
 {
     Potion* reward = model.getReward();
 
-    QString iconPath = ":/Potion/potionEmpty.png";
+    QString iconPath = ":/assets/Potion/potionEmpty.png";
     QString tip = "Reward";
 
     if (reward)
     {
         QString potionName = reward->getName().toLower().replace(" ", "_");
-        iconPath = QString(":/Potion/%1.png").arg(potionName);
+        iconPath = QString(":/assets/Potion/%1.png").arg(potionName);
         tip = reward->getName();
     }
 
@@ -253,7 +253,7 @@ void TreasureGuessPage::updateUI()
     {
         btn->setEnabled(true);
         btn->setStyleSheet(
-            "QPushButton { border-image: url(:/Treasure/ChestClose.png); border: none; background: transparent; }"
+            "QPushButton { border-image: url(:/assets/Treasure/ChestClose.png); border: none; background: transparent; }"
             "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
             );
     }

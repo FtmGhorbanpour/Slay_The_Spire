@@ -26,7 +26,7 @@ void TreasurePage::setupUI()
     setObjectName("TreasurePage");
     setStyleSheet(
         "#TreasurePage {"
-        "background-image: url(:/Treasure/TreasureBackground.png);"
+        "background-image: url(:/assets/Treasure/TreasureBackground.png);"
         "background-repeat: no-repeat;"
         "background-position: center;"
         "background-color: #1a1410;"
@@ -37,7 +37,7 @@ void TreasurePage::setupUI()
         );
     setFixedSize(1280, 720);
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -86,7 +86,7 @@ void TreasurePage::setupUI()
     backBtn->setFixedSize(180, 80);
     backBtn->setCursor(buttonHoverCursor);
     backBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/Treasure/ProceedBtn.png); border: none; background: transparent; }"
+        "QPushButton { border-image: url(:/assets/Treasure/ProceedBtn.png); border: none; background: transparent; }"
         "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
         );
     connect(backBtn, &QPushButton::pressed, this, []() {
@@ -100,7 +100,7 @@ void TreasurePage::setupUI()
 
 void TreasurePage::refreshChestVisual()
 {
-    QString imagePath = chestOpened ? ":/Treasure/ChestOpen.png" : ":/Treasure/ChestClose.png";
+    QString imagePath = chestOpened ? ":/assets/Treasure/ChestOpen.png" : ":/assets/Treasure/ChestClose.png";
 
     chestBtn->setStyleSheet(
         QString("QPushButton { border-image: url(%1); border: none; background: transparent; }"
@@ -135,7 +135,7 @@ void TreasurePage::refreshRewardVisual()
     {
     case RewardType::Gold:
         rewardBtn->setStyleSheet(
-            "QPushButton { border-image: url(:/Treasure/Money.png); border: none; background: transparent; }"
+            "QPushButton { border-image: url(:/assets/Treasure/Money.png); border: none; background: transparent; }"
             "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
             );
         tip = QString("Gold  +%1").arg(reward->getGoldAmount());
@@ -145,7 +145,7 @@ void TreasurePage::refreshRewardVisual()
         if (reward->getPotion())
         {
             QString potionName = reward->getPotion()->getName().toLower().replace(" ", "_");
-            QString iconPath = QString(":/Potion/%1.png").arg(potionName);
+            QString iconPath = QString(":/assets/Potion/%1.png").arg(potionName);
             rewardBtn->setStyleSheet(
                 QString("QPushButton { border-image: url(%1); border: none; background: transparent; }"
                         "QPushButton:pressed { margin: 5px 5px 5px 5px; }").arg(iconPath)

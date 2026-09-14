@@ -16,7 +16,7 @@ mainpage::mainpage(QWidget *parent)
 {
     setObjectName("MainMenuPage");
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -53,7 +53,7 @@ mainpage::mainpage(QWidget *parent)
     singlePlayerBtn = new QPushButton(this);
     singlePlayerBtn->setFixedSize(100, 75);
     singlePlayerBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/singlePlayerBtn.png); }"
+        "QPushButton { border-image: url(:/assets/map/singlePlayerBtn.png); }"
         "QPushButton:pressed { "
         "   margin: 5px 8px 5px 8px; "
         "}"
@@ -65,7 +65,7 @@ mainpage::mainpage(QWidget *parent)
     multiPlayerBtn->setCursor(buttonHoverCursor);
     multiPlayerBtn->setFixedSize(100, 75);
     multiPlayerBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/multiPalyerBtn.png); }"
+        "QPushButton { border-image: url(:/assets/map/multiPalyerBtn.png); }"
         "QPushButton:pressed { "
         "   margin: 5px 8px 5px 8px; "
         "}");
@@ -75,7 +75,7 @@ mainpage::mainpage(QWidget *parent)
     leaderBoardBtn->setCursor(buttonHoverCursor);
     leaderBoardBtn->setFixedSize(100, 75);
     leaderBoardBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/leaderBoardBtn.png); }"
+        "QPushButton { border-image: url(:/assets/map/leaderBoardBtn.png); }"
         "QPushButton:pressed { "
         "   margin: 5px 8px 5px 8px; "
         "}");
@@ -85,7 +85,7 @@ mainpage::mainpage(QWidget *parent)
     settingBtn->setCursor(buttonHoverCursor);
     settingBtn->setFixedSize(100, 75);
     settingBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/settingBtn.png); }"
+        "QPushButton { border-image: url(:/assets/map/settingBtn.png); }"
         "QPushButton:pressed { "
         "   margin: 5px 8px 5px 8px; "
         "}");
@@ -95,7 +95,7 @@ mainpage::mainpage(QWidget *parent)
     exitBtn->setCursor(buttonHoverCursor);
     exitBtn->setFixedSize(100, 75);
     exitBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/ExitBtn.png); }"
+        "QPushButton { border-image: url(:/assets/map/ExitBtn.png); }"
         "QPushButton:pressed { "
         "   margin: 5px 8px 5px 8px; "
         "}");

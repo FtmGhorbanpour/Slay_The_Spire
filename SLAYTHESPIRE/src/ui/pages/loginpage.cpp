@@ -13,7 +13,7 @@ loginpage::loginpage(QWidget *parent)
     setObjectName("loginPage");
 
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -82,7 +82,7 @@ loginpage::loginpage(QWidget *parent)
     loginBtn->setFixedSize(100, 100);
     loginBtn->setToolTip("If you have an account, Press this.");
     loginBtn->setStyleSheet(
-        "QWidget {border-image: url(:/LoginBtn.png); }"
+        "QWidget {border-image: url(:/assets/map/LoginBtn.png); }"
         "QPushButton:pressed { "
         "   margin: 5px 8px 5px 8px; "
         "}");
@@ -92,7 +92,7 @@ loginpage::loginpage(QWidget *parent)
     registerBtn->setFixedSize(100, 100);
     registerBtn->setToolTip("If you dont have account, Press this.");
     registerBtn->setStyleSheet(
-        "QWidget {border-image: url(:/RegisterBtn.png); }"
+        "QWidget {border-image: url(:/assets/map/RegisterBtn.png); }"
         "QPushButton:pressed { "
         "   margin: 5px 8px 5px 8px; "
         "}");

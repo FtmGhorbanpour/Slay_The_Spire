@@ -1,90 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>LoginBtn.png</file>
-        <file>RegisterBtn.png</file>
-        <file>ExitBtn.png</file>
-        <file>leaderBoardBtn.png</file>
-        <file>multiPalyerBtn.png</file>
-        <file>settingBtn.png</file>
-        <file>singlePlayerBtn.png</file>
-        <file>battlebackground.png</file>
-        <file>ironclad.png</file>
-        <file>heartIcon.png</file>
-        <file>moneyPouch.png</file>
-        <file>floor.png</file>
-        <file>settingicon.png</file>
-        <file>mapIcon.png</file>
-        <file>deckIcon.png</file>
-        <file>energybutton.png</file>
-        <file>drawPile.png</file>
-        <file>discardPile.png</file>
-        <file>buff.png</file>
-        <file>debuff.png</file>
-        <file>attack.png</file>
-        <file>defendIcon.png</file>
-        <file>SettingPushButton.png</file>
-        <file>ChangeUsernameViewer.png</file>
-        <file>shop_background.png</file>
-        <file>cardRemoval.png</file>
-        <file>Merchant.png</file>
-        <file>sold_out.png</file>
-        <file>cursor.png</file>
-        <file>DefeatBackground.png</file>
-    </qresource>
-    <qresource prefix="/map">
-        <file>boss_champ.png</file>
-        <file>boss_hexaghost.png</file>
-        <file>campfire_available.png</file>
-        <file>campfire_locked.png</file>
-        <file>campfire_visited.png</file>
-        <file>cardsBtn.png</file>
-        <file>elite_available.png</file>
-        <file>elite_visited.png</file>
-        <file>enemy_available.png</file>
-        <file>enemy_visited.png</file>
-        <file>event_available.png</file>
-        <file>event_visited.png</file>
-        <file>floorIcon.png</file>
-        <file>map.png</file>
-        <file>settingBtnMap.png</file>
-        <file>shop_available.png</file>
-        <file>shop_visited.png</file>
-        <file>treasure_available.png</file>
-        <file>treasure_visited.png</file>
-        <file>elite_locked.png</file>
-        <file>enemy_locked.png</file>
-        <file>event_locked.png</file>
-        <file>relicIcon.png</file>
-        <file>treasure_locked.png</file>
-        <file>shop_locked.png</file>
-        <file>minigame_available.png</file>
-        <file>minigame_locked.png</file>
-        <file>minigame_visited.png</file>
-    </qresource>
-    <qresource prefix="/Relic">
-        <file>Anchor.png</file>
-        <file>BlackStar.png</file>
-        <file>BurningBlood.png</file>
-        <file>CallingBell.png</file>
-        <file>CoffeeDripper.png</file>
-        <file>CultistHeadpiece.png</file>
-        <file>FaceOfCleric.png</file>
-        <file>Girya.png</file>
-        <file>GoldenIdol.png</file>
-        <file>GremlinVisage.png</file>
-        <file>HappyFlower.png</file>
-        <file>IceCream.png</file>
-        <file>Kunai.png</file>
-        <file>MarkofPain.png</file>
-        <file>MutagenicStrength.png</file>
-        <file>Orichalcum.png</file>
-        <file>Shuriken.png</file>
-        <file>Vajra.png</file>
-        <file>VelvetChoker.png</file>
-        <file>WarpedTongs.png</file>
-        <file>RelicViewer.png</file>
-    </qresource>
-    <qresource prefix="/card">
         <file>assets/cards/Barricade.png</file>
         <file>assets/cards/BarricadePlus.png</file>
         <file>assets/cards/Berserk.png</file>
@@ -143,90 +58,150 @@
         <file>assets/cards/TwinStrike.png</file>
         <file>assets/cards/TwinStrikePlus.png</file>
         <file>assets/cards/Wound.png</file>
-    </qresource>
-    <qresource prefix="/Potion">
-        <file>block_potion.png</file>
-        <file>energy_potion.png</file>
-        <file>fairy_in_a_bottle.png</file>
-        <file>fire_potion.png</file>
-        <file>potionEmpty.png</file>
-        <file>swift_potion.png</file>
-    </qresource>
-    <qresource prefix="/Enemy">
-        <file>Cultist.png</file>
-        <file>Mugger.png</file>
-        <file>Small Slime.png</file>
-        <file>Jaw Worm.png</file>
-        <file>Medium Slime.png</file>
-        <file>Large Slime.png</file>
-        <file>Looter.png</file>
-        <file>Blue Slaver.png</file>
-        <file>Red Louse.png</file>
-        <file>Green Louse.png</file>
-        <file>Red Slaver.png</file>
-        <file>Spheric Guardian.png</file>
-        <file>Gremlin Nob.png</file>
-        <file>Sentry.png</file>
-        <file>Book of Stabbing.png</file>
-        <file>Taskmaster.png</file>
-        <file>King Slime.png</file>
-        <file>HexaGhost.png</file>
-        <file>The Champ.png</file>
-    </qresource>
-    <qresource prefix="/new/prefix1"/>
-    <qresource prefix="/Effect">
-        <file>WeakEff.png</file>
-        <file>FrailEff.png</file>
-        <file>FeelNoPainEff.png</file>
-        <file>StrengthEff.png</file>
-        <file>BrutalityEff.png</file>
-        <file>DemonFormEff.png</file>
-        <file>VulnerableEff.png</file>
-        <file>BarricadeEff.png</file>
-        <file>DexterityEff.png</file>
-        <file>DarkEmbraceEff.png</file>
-        <file>MetallicizeEff.png</file>
-    </qresource>
-    <qresource prefix="/RestSite">
-        <file>BackBtn.png</file>
-        <file>YesBtn.png</file>
-        <file>TickBtn.png</file>
-        <file>SmithBtn.png</file>
-        <file>RestBtn.png</file>
-        <file>RestSite.png</file>
-        <file>NoBtn.png</file>
-        <file>GiryaBtn.png</file>
-        <file>GiryaBtnDis.png</file>
-        <file>RestBtnDis.png</file>
-        <file>SmithBtnDis.png</file>
-        <file>FlashLabel.png</file>
-        <file>UpgradeViewer.png</file>
-    </qresource>
-    <qresource prefix="/Reward">
-        <file>CardReward.png</file>
-        <file>GoldReward.png</file>
-        <file>RelicReward.png</file>
-        <file>SelectionViewer.png</file>
-        <file>PotionReward.png</file>
-        <file>RewardViewer.png</file>
-    </qresource>
-    <qresource prefix="/Treasure">
-        <file>Money.png</file>
-        <file>TreasureBackground.png</file>
-        <file>ChestClose.png</file>
-        <file>ChestOpen.png</file>
-        <file>ProceedBtn.png</file>
-    </qresource>
-    <qresource prefix="/Event">
-        <file>FaceTrader.jpg</file>
-        <file>GoldenIdol.jpg</file>
-        <file>GoldenShrine.jpg</file>
-        <file>Augmenter.jpg</file>
-        <file>PleadingVagrant.jpg</file>
-        <file>EventOption.png</file>
-        <file>TheCleric.jpg</file>
-        <file>TheJoust.jpg</file>
-        <file>OminousForge.png</file>
+        <file>assets/Enemy/Blue Slaver.png</file>
+        <file>assets/Enemy/Book of Stabbing.png</file>
+        <file>assets/Enemy/Cultist.png</file>
+        <file>assets/Enemy/Green Louse.png</file>
+        <file>assets/Enemy/Gremlin Nob.png</file>
+        <file>assets/Enemy/HexaGhost.png</file>
+        <file>assets/Enemy/Jaw Worm.png</file>
+        <file>assets/Enemy/King Slime.png</file>
+        <file>assets/Enemy/Large Slime.png</file>
+        <file>assets/Enemy/Looter.png</file>
+        <file>assets/Enemy/Medium Slime.png</file>
+        <file>assets/Enemy/Mugger.png</file>
+        <file>assets/Enemy/Red Louse.png</file>
+        <file>assets/Enemy/Red Slaver.png</file>
+        <file>assets/Enemy/Sentry.png</file>
+        <file>assets/Enemy/Small Slime.png</file>
+        <file>assets/Enemy/Spheric Guardian.png</file>
+        <file>assets/Enemy/Taskmaster.png</file>
+        <file>assets/Enemy/The Champ.png</file>
+        <file>assets/Effect/BarricadeEff.png</file>
+        <file>assets/Effect/DemonFormEff.png</file>
+        <file>assets/Effect/DexterityEff.png</file>
+        <file>assets/Effect/BrutalityEff.png</file>
+        <file>assets/Effect/DarkEmbraceEff.png</file>
+        <file>assets/Effect/FeelNoPainEff.png</file>
+        <file>assets/Effect/FrailEff.png</file>
+        <file>assets/Effect/MetallicizeEff.png</file>
+        <file>assets/Effect/StrengthEff.png</file>
+        <file>assets/Effect/VulnerableEff.png</file>
+        <file>assets/Effect/WeakEff.png</file>
+        <file>assets/Event/Augmenter.jpg</file>
+        <file>assets/Event/EventOption.png</file>
+        <file>assets/Event/FaceTrader.jpg</file>
+        <file>assets/Event/GoldenIdol.jpg</file>
+        <file>assets/Event/GoldenShrine.jpg</file>
+        <file>assets/Event/OminousForge.png</file>
+        <file>assets/Event/PleadingVagrant.jpg</file>
+        <file>assets/Event/TheCleric.jpg</file>
+        <file>assets/Event/TheJoust.jpg</file>
+        <file>assets/map/boss_champ.png</file>
+        <file>assets/map/boss_hexaghost.png</file>
+        <file>assets/map/campfire_available.png</file>
+        <file>assets/map/campfire_locked.png</file>
+        <file>assets/map/campfire_visited.png</file>
+        <file>assets/map/cardsBtn.png</file>
+        <file>assets/map/elite_available.png</file>
+        <file>assets/map/elite_locked.png</file>
+        <file>assets/map/elite_visited.png</file>
+        <file>assets/map/enemy_available.png</file>
+        <file>assets/map/enemy_locked.png</file>
+        <file>assets/map/enemy_visited.png</file>
+        <file>assets/map/event_available.png</file>
+        <file>assets/map/event_locked.png</file>
+        <file>assets/map/event_visited.png</file>
+        <file>assets/map/floorIcon.png</file>
+        <file>assets/map/map.png</file>
+        <file>assets/map/minigame_available.png</file>
+        <file>assets/map/minigame_locked.png</file>
+        <file>assets/map/minigame_visited.png</file>
+        <file>assets/map/relicIcon.png</file>
+        <file>assets/map/settingBtnMap.png</file>
+        <file>assets/map/shop_available.png</file>
+        <file>assets/map/shop_locked.png</file>
+        <file>assets/map/shop_visited.png</file>
+        <file>assets/map/treasure_available.png</file>
+        <file>assets/map/treasure_locked.png</file>
+        <file>assets/map/treasure_visited.png</file>
+        <file>assets/Potion/block_potion.png</file>
+        <file>assets/Potion/energy_potion.png</file>
+        <file>assets/Potion/fairy_in_a_bottle.png</file>
+        <file>assets/Potion/fire_potion.png</file>
+        <file>assets/Potion/potionEmpty.png</file>
+        <file>assets/Potion/swift_potion.png</file>
+        <file>assets/Relic/Anchor.png</file>
+        <file>assets/Relic/BlackStar.png</file>
+        <file>assets/Relic/BurningBlood.png</file>
+        <file>assets/Relic/CallingBell.png</file>
+        <file>assets/Relic/CoffeeDripper.png</file>
+        <file>assets/Relic/CultistHeadpiece.png</file>
+        <file>assets/Relic/FaceOfCleric.png</file>
+        <file>assets/Relic/Girya.png</file>
+        <file>assets/Relic/GoldenIdol.png</file>
+        <file>assets/Relic/GremlinVisage.png</file>
+        <file>assets/Relic/HappyFlower.png</file>
+        <file>assets/Relic/IceCream.png</file>
+        <file>assets/Relic/Kunai.png</file>
+        <file>assets/Relic/MarkofPain.png</file>
+        <file>assets/Relic/MutagenicStrength.png</file>
+        <file>assets/Relic/Orichalcum.png</file>
+        <file>assets/Relic/RelicViewer.png</file>
+        <file>assets/Relic/Shuriken.png</file>
+        <file>assets/Relic/Vajra.png</file>
+        <file>assets/Relic/VelvetChoker.png</file>
+        <file>assets/Relic/WarpedTongs.png</file>
+        <file>assets/RestSite/BackBtn.png</file>
+        <file>assets/RestSite/FlashLabel.png</file>
+        <file>assets/RestSite/GiryaBtn.png</file>
+        <file>assets/RestSite/GiryaBtnDis.png</file>
+        <file>assets/RestSite/NoBtn.png</file>
+        <file>assets/RestSite/RestBtn.png</file>
+        <file>assets/RestSite/RestBtnDis.png</file>
+        <file>assets/RestSite/RestSite.png</file>
+        <file>assets/RestSite/SmithBtn.png</file>
+        <file>assets/RestSite/SmithBtnDis.png</file>
+        <file>assets/RestSite/TickBtn.png</file>
+        <file>assets/RestSite/UpgradeViewer.png</file>
+        <file>assets/RestSite/YesBtn.png</file>
+        <file>assets/Reward/CardReward.png</file>
+        <file>assets/Reward/GoldReward.png</file>
+        <file>assets/Reward/PotionReward.png</file>
+        <file>assets/Reward/RelicReward.png</file>
+        <file>assets/Reward/RewardViewer.png</file>
+        <file>assets/Reward/SelectionViewer.png</file>
+        <file>assets/Treasure/ChestClose.png</file>
+        <file>assets/Treasure/ChestOpen.png</file>
+        <file>assets/Treasure/Money.png</file>
+        <file>assets/Treasure/ProceedBtn.png</file>
+        <file>assets/Treasure/TreasureBackground.png</file>
+        <file>assets/battle/attack.png</file>
+        <file>assets/battle/battlebackground.png</file>
+        <file>assets/shop/cardRemoval.png</file>
+        <file>assets/map/ChangeUsernameViewer.png</file>
+        <file>assets/map/cursor.png</file>
+        <file>assets/battle/deckIcon.png</file>
+        <file>assets/battle/defendIcon.png</file>
+        <file>assets/battle/discardPile.png</file>
+        <file>assets/battle/drawPile.png</file>
+        <file>assets/battle/energybutton.png</file>
+        <file>assets/battle/heartIcon.png</file>
+        <file>assets/battle/ironclad.png</file>
+        <file>assets/battle/mapIcon.png</file>
+        <file>assets/battle/moneyPouch.png</file>
+        <file>assets/shop/Merchant.png</file>
+        <file>assets/shop/shop_background.png</file>
+        <file>assets/shop/sold_out.png</file>
+        <file>assets/map/DefeatBackground.png</file>
+        <file>assets/map/ExitBtn.png</file>
+        <file>assets/map/leaderBoardBtn.png</file>
+        <file>assets/map/LoginBtn.png</file>
+        <file>assets/map/multiPalyerBtn.png</file>
+        <file>assets/map/RegisterBtn.png</file>
+        <file>assets/map/settingBtn.png</file>
+        <file>assets/map/singlePlayerBtn.png</file>
+        <file>assets/map/SettingPushButton.png</file>
     </qresource>
     <qresource prefix="/leaderboard"/>
 </RCC>

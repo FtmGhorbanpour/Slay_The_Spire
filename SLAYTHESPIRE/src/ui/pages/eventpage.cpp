@@ -30,10 +30,10 @@ void RemoveCardDialog::setupUI()
 {
     setWindowTitle("Remove a Card");
     setFixedSize(917, 620);
-    setStyleSheet("QDialog { border-image: url(:/card/assets/cards/CardViewer.png); }"
+    setStyleSheet("QDialog { border-image: url(:/assets/cards/CardViewer.png); }"
                   "QScrollArea { border: none; background: transparent; }");
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -203,10 +203,10 @@ void TransformCardsDialog::setupUI()
 {
     setWindowTitle("Transform 2 Cards");
     setFixedSize(917, 620);
-    setStyleSheet("QDialog { border-image: url(:/card/assets/cards/CardViewer.png); }"
+    setStyleSheet("QDialog { border-image: url(:/assets/cards/CardViewer.png); }"
                   "QScrollArea { border: none; background: transparent; }");
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -398,7 +398,7 @@ EventPage::EventPage(Player* playerPtr, Map* mapPtr, Event* eventPtr, QWidget* p
 QString EventPage::eventBackgroundPath() const
 {
     if (!event)
-        return QString(":/Treasure/TreasureBackground.png");
+        return QString(":/assets/Treasure/TreasureBackground.png");
 
     QString cleanName = event->getName();
     cleanName.remove(' ');
@@ -406,9 +406,9 @@ QString EventPage::eventBackgroundPath() const
     cleanName.remove('.');
 
     if(cleanName == "OminousForge")
-        return QString(":/Event/%1.png").arg(cleanName);
+        return QString(":/assets/Event/%1.png").arg(cleanName);
     else
-        return QString(":/Event/%1.jpg").arg(cleanName);
+        return QString(":/assets/Event/%1.jpg").arg(cleanName);
 }
 
 void EventPage::setupUI()
@@ -427,7 +427,7 @@ void EventPage::setupUI()
             ).arg(eventBackgroundPath())
         );
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -529,7 +529,7 @@ void EventPage::populateOptions()
         btn->setMinimumHeight(52);
         btn->setCursor(buttonHoverCursor);
         btn->setStyleSheet(
-            "QPushButton { border-image: url(:/Event/EventOption); color: #facc15;"
+            "QPushButton { border-image: url(:/assets/Event/EventOption); color: #facc15;"
             "border: none; font-weight: bold;"
             "font-size: 14px; padding: 8px 16px; }"
             "QPushButton:pressed { margin: 3px 3px 3px 3px; }"

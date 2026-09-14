@@ -44,7 +44,7 @@ void LeaderboardPage::loadAssets()
 
 void LeaderboardPage::setupUi()
 {
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -477,7 +477,7 @@ void LeaderboardPage::openEntryDetailsDialog(int row)
         "border-radius: 14px;"
         );
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     dialog.setCursor(customCursor);

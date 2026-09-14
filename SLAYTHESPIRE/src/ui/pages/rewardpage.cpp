@@ -26,13 +26,13 @@ void RewardPage::setupUI()
     setWindowTitle("Reward");
     setObjectName("RewardPage");
     setStyleSheet(
-        "#RewardPage { border-image: url(:/Reward/RewardViewer.png); }"
+        "#RewardPage { border-image: url(:/assets/Reward/RewardViewer.png); }"
         "QToolTip { color: #facc15; background-color: #1f2937; border: 1px solid #b91c1c;"
         "border-radius: 4px; padding: 6px; font-weight: bold; }"
         );
     setFixedSize(400, 550);
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -65,7 +65,7 @@ void RewardPage::setupUI()
     continueBtn->setFixedSize(110, 50);
     continueBtn->setCursor(buttonHoverCursor);
     continueBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/RestSite/BackBtn.png); background: transparent; border: none; }"
+        "QPushButton { border-image: url(:/assets/RestSite/BackBtn.png); background: transparent; border: none; }"
         "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
         );
 
@@ -119,7 +119,7 @@ QPushButton* RewardPage::createRewardButton(Reward* reward)
     {
     case RewardType::Gold:
         btn->setStyleSheet(
-            "QPushButton { border-image: url(:/Reward/GoldReward.png); font-size: 15px;"
+            "QPushButton { border-image: url(:/assets/Reward/GoldReward.png); font-size: 15px;"
             "font-weight: bold; border: 1px solid rgba(255,255,255,40); }"
             "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
             );
@@ -133,7 +133,7 @@ QPushButton* RewardPage::createRewardButton(Reward* reward)
     {
         Potion* potion = reward->getPotion();
         btn->setStyleSheet(
-            "QPushButton { border-image: url(:/Reward/PotionReward.png); font-size: 15px;"
+            "QPushButton { border-image: url(:/assets/Reward/PotionReward.png); font-size: 15px;"
             "font-weight: bold; border: 1px solid rgba(255,255,255,40); }"
             "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
             );
@@ -153,7 +153,7 @@ QPushButton* RewardPage::createRewardButton(Reward* reward)
 
     case RewardType::Relic:
         btn->setStyleSheet(
-            "QPushButton { border-image: url(:/Reward/RelicReward.png); font-size: 15px;"
+            "QPushButton { border-image: url(:/assets/Reward/RelicReward.png); font-size: 15px;"
             "font-weight: bold; border: 1px solid rgba(255,255,255,40); }"
             "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
             );
@@ -182,7 +182,7 @@ QPushButton* RewardPage::createRewardButton(Reward* reward)
 
     case RewardType::Card:
         btn->setStyleSheet(
-            "QPushButton { border-image: url(:/Reward/CardReward.png); font-size: 15px;"
+            "QPushButton { border-image: url(:/assets/Reward/CardReward.png); font-size: 15px;"
             "font-weight: bold; border: 1px solid rgba(255,255,255,40); }"
             "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
             );

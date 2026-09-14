@@ -20,10 +20,10 @@ void SettingsDialog::setupUI()
 {
     setObjectName("SettingPage");
     setStyleSheet(
-        "#SettingPage { border-image: url(:/Reward/SelectionViewer.png); }");
+        "#SettingPage { border-image: url(:/assets/Reward/SelectionViewer.png); }");
     setFixedSize(500, 450);
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -48,7 +48,7 @@ void SettingsDialog::setupUI()
     toggleSoundBtn = new QPushButton(this);
     toggleSoundBtn->setCursor(buttonHoverCursor);
     toggleSoundBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/SettingPushButton.png); font-size: 15px;"
+        "QPushButton { border-image: url(:/assets/map/SettingPushButton.png); font-size: 15px;"
         "font-weight: bold; border: 1px solid rgba(255,255,255,40); }"
         "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
         );
@@ -63,7 +63,7 @@ void SettingsDialog::setupUI()
     changeUsernameBtn = new QPushButton("Change Username", this);
     changeUsernameBtn->setCursor(buttonHoverCursor);
     changeUsernameBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/SettingPushButton.png); font-size: 15px;"
+        "QPushButton { border-image: url(:/assets/map/SettingPushButton.png); font-size: 15px;"
         "font-weight: bold; border: 1px solid rgba(255,255,255,40); }"
         "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
         );
@@ -76,7 +76,7 @@ void SettingsDialog::setupUI()
     closeBtn = new QPushButton(this);
     closeBtn->setCursor(buttonHoverCursor);
     closeBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/RestSite/BackBtn.png); border: none; background: transparent; }"
+        "QPushButton { border-image: url(:/assets/RestSite/BackBtn.png); border: none; background: transparent; }"
         "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
         );
     closeBtn->move(0,300);
@@ -110,10 +110,10 @@ void SettingsDialog::onChangeUsernameClicked()
     dialog.setWindowTitle("Change Username");
     dialog.setObjectName("ChangeUsername");
     dialog.setStyleSheet(
-        "#ChangeUsername { border-image: url(:/ChangeUsernameViewer.png); }");
+        "#ChangeUsername { border-image: url(:/assets/map/ChangeUsernameViewer.png); }");
     dialog.setFixedSize(450, 400);
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     dialog.setCursor(customCursor);
@@ -148,14 +148,14 @@ void SettingsDialog::onChangeUsernameClicked()
 
     QPushButton* cancelBtn = new QPushButton(&dialog);
     cancelBtn->setFixedSize(150, 100);
-    cancelBtn->setStyleSheet("QPushButton { border-image: url(:/RestSite/NoBtn.png); }"
+    cancelBtn->setStyleSheet("QPushButton { border-image: url(:/assets/RestSite/NoBtn.png); }"
                              "QPushButton:pressed { margin: 5px 5px 5px 5px; }");
     cancelBtn->setCursor(buttonHoverCursor);
     cancelBtn->move(0,270);
 
     QPushButton* confirmBtn = new QPushButton(&dialog);
     confirmBtn->setFixedSize(150, 100);
-    confirmBtn->setStyleSheet("QPushButton { border-image: url(:/RestSite/YesBtn.png); }"
+    confirmBtn->setStyleSheet("QPushButton { border-image: url(:/assets/RestSite/YesBtn.png); }"
                               "QPushButton:pressed { margin: 5px 5px 5px 5px; }");
     confirmBtn->setCursor(buttonHoverCursor);
     confirmBtn->move(300,270);

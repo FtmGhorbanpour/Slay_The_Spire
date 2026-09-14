@@ -12,7 +12,7 @@ RelicViewerDialog::RelicViewerDialog(Player* player, QWidget* parent)
     setFixedSize(460, 520);
     setStyleSheet(
         "QDialog {"
-        "border-image: url(:/Relic/RelicViewer.png);"
+        "border-image: url(:/assets/Relic/RelicViewer.png);"
         "}"
         "QToolTip {"
         "color: #facc15;"
@@ -24,7 +24,7 @@ RelicViewerDialog::RelicViewerDialog(Player* player, QWidget* parent)
         "}"
         );
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -42,7 +42,7 @@ QString RelicViewerDialog::relicIconPath(const Relic* relic)
     cleanName.remove('\'');
     cleanName.remove('.');
 
-    return QString(":/Relic/%1.png").arg(cleanName);
+    return QString(":/assets/Relic/%1.png").arg(cleanName);
 }
 
 void RelicViewerDialog::setupUI()

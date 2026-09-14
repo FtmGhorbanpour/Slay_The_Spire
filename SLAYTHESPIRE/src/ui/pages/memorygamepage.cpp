@@ -28,11 +28,11 @@ void MemoryRewardDialog::setupUI()
 {
     setWindowTitle("Memory Game Reward");
     setStyleSheet(
-        "QDialog { border-image: url(:/Reward/SelectionViewer.png); border: none; background: transparent; }"
+        "QDialog { border-image: url(:/assets/Reward/SelectionViewer.png); border: none; background: transparent; }"
         );
     setFixedSize(400, 300);
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -61,7 +61,7 @@ void MemoryRewardDialog::setupUI()
     rewardBtn->setCursor(buttonHoverCursor);
     rewardBtn->setText("Random Relic");
     rewardBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/Reward/RelicReward.png); font-size: 15px;"
+        "QPushButton { border-image: url(:/assets/Reward/RelicReward.png); font-size: 15px;"
         "font-weight: bold; border: 1px solid rgba(255,255,255,40); }"
         "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
         );
@@ -96,11 +96,11 @@ void MemoryLoseDialog::setupUI()
 {
     setWindowTitle("Challenge Failed");
     setStyleSheet(
-        "QDialog { border-image: url(:/Reward/SelectionViewer.png); border: none; background: transparent; }"
+        "QDialog { border-image: url(:/assets/Reward/SelectionViewer.png); border: none; background: transparent; }"
         );
     setFixedSize(420, 260);
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -128,7 +128,7 @@ void MemoryLoseDialog::setupUI()
     continueBtn->setFixedSize(160, 50);
     continueBtn->setCursor(buttonHoverCursor);
     continueBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/SettingPushButton.png); font-size: 15px;"
+        "QPushButton { border-image: url(:/assets/map/SettingPushButton.png); font-size: 15px;"
         "font-weight: bold; border: 1px solid rgba(255,255,255,40); }"
         "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
         );
@@ -182,7 +182,7 @@ void MemoryGameWidget::setupUI()
         );
     setFixedSize(1280, 720);
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);

@@ -29,7 +29,7 @@ void MapPage::setupUI() {
     setObjectName("MapPage");
     setStyleSheet(
         "#MapPage {"
-        "background-image: url(:/map/map.png);"
+        "background-image: url(:/assets/map/map.png);"
         "background-repeat: no-repeat;"
         "background-position: center;"
         "}"
@@ -39,7 +39,7 @@ void MapPage::setupUI() {
         );
 
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -114,7 +114,7 @@ void MapPage::createTopBar(QVBoxLayout* mainLayout) {
     relicBtn->setStyleSheet(
         "QPushButton {"
         "border: none;"
-        "border-image: url(:/map/relicIcon.png);"
+        "border-image: url(:/assets/map/relicIcon.png);"
         "}"
         "QPushButton:pressed { "
         "   margin: 3px 3px 3px 3px; "
@@ -147,7 +147,7 @@ void MapPage::createTopBar(QVBoxLayout* mainLayout) {
     for (int i = 0; i < 3; ++i) {
         potionSlots[i] = new QLabel();
         potionSlots[i]->setFixedSize(32, 32);
-        potionSlots[i]->setStyleSheet("border-image: url(:/Potion/potionEmpty.png); background: transparent;");
+        potionSlots[i]->setStyleSheet("border-image: url(:/assets/Potion/potionEmpty.png); background: transparent;");
         potionsLayout->addWidget(potionSlots[i]);
     }
 
@@ -172,7 +172,7 @@ void MapPage::createTopBar(QVBoxLayout* mainLayout) {
     floorIconLabel = new QLabel();
     floorIconLabel->setFixedSize(24, 24);
     floorIconLabel->setStyleSheet(
-        "border-image: url(:/map/floorIcon.png); background: transparent;");
+        "border-image: url(:/assets/map/floorIcon.png); background: transparent;");
 
     floorNumberLabel = new QLabel("0");
     floorNumberLabel->setStyleSheet("font-size: 18px; font-weight: bold; color: " + BONE_COLOR + ";");
@@ -192,7 +192,7 @@ void MapPage::createTopBar(QVBoxLayout* mainLayout) {
     deckBtn->setStyleSheet(
         "QPushButton {"
         "border: none;"
-        "border-image: url(:/map/cardsBtn.png);"
+        "border-image: url(:/assets/map/cardsBtn.png);"
         "}"
         "QPushButton:pressed { "
         "   margin: 5px 5px 5px 5px; "
@@ -214,7 +214,7 @@ void MapPage::createTopBar(QVBoxLayout* mainLayout) {
     settingsBtn->setFixedSize(45, 45);
     settingsBtn->setCursor(buttonHoverCursor);
     settingsBtn->setStyleSheet(
-        "QPushButton { border-image: url(:/map/settingBtnMap.png); }"
+        "QPushButton { border-image: url(:/assets/map/settingBtnMap.png); }"
         "QPushButton:pressed { "
         "   margin: 5px 5px 5px 5px; "
         "}"
@@ -281,11 +281,11 @@ void MapPage::updateTopBarData() {
     for(int i = 0; i < 3; ++i) {
         if(i < player->getPotionCount() && player->getPotion(i) != nullptr) {
             QString potionName = player->getPotion(i)->getName().toLower().replace(" ", "_");
-            QString iconPath = QString(":/Potion/%1.png").arg(potionName);
+            QString iconPath = QString(":/assets/Potion/%1.png").arg(potionName);
             potionSlots[i]->setStyleSheet(QString("border-image: url(%1); background: transparent;").arg(iconPath));
             potionSlots[i]->setFixedSize(42, 42);
         } else {
-            potionSlots[i]->setStyleSheet("border-image: url(:/Potion/potionEmpty.png); background: transparent;");
+            potionSlots[i]->setStyleSheet("border-image: url(:/assets/Potion/potionEmpty.png); background: transparent;");
         }
     }
 }

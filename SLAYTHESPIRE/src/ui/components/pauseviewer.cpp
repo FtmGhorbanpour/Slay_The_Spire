@@ -17,11 +17,11 @@ void PauseDialog::setupUI()
     setWindowTitle("Paused");
     setObjectName("PauseDialog");
     setStyleSheet(
-        "#PauseDialog { border-image: url(:/Reward/SelectionViewer.png); }"
+        "#PauseDialog { border-image: url(:/assets/Reward/SelectionViewer.png); }"
         );
     setFixedSize(400, 480);
     setModal(true);
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -48,7 +48,7 @@ void PauseDialog::setupUI()
         btn->setFixedSize(220, 55);
         btn->setCursor(buttonHoverCursor);
         btn->setStyleSheet(
-            "QPushButton { border-image: url(:/SettingPushButton.png); font-size: 15px;"
+            "QPushButton { border-image: url(:/assets/map/SettingPushButton.png); font-size: 15px;"
             "font-weight: bold; border: 1px solid rgba(255,255,255,40); }"
             "QPushButton:pressed { margin: 5px 5px 5px 5px; }"
             );
@@ -98,9 +98,9 @@ void PauseDialog::onGiveUpClicked()
     dialog.setWindowTitle("Give Up");
     dialog.setObjectName("GiveUp");
     dialog.setStyleSheet(
-        "#GiveUp { border-image: url(:/ChangeUsernameViewer.png); }");
+        "#GiveUp { border-image: url(:/assets/map/ChangeUsernameViewer.png); }");
     dialog.setFixedSize(600, 400);
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     dialog.setCursor(customCursor);
@@ -122,14 +122,14 @@ void PauseDialog::onGiveUpClicked()
 
     QPushButton* cancelBtn = new QPushButton(&dialog);
     cancelBtn->setFixedSize(150, 100);
-    cancelBtn->setStyleSheet("QPushButton { border-image: url(:/RestSite/NoBtn.png); }"
+    cancelBtn->setStyleSheet("QPushButton { border-image: url(:/assets/RestSite/NoBtn.png); }"
                              "QPushButton:pressed { margin: 5px 5px 5px 5px; }");
     cancelBtn->setCursor(buttonHoverCursor);
     cancelBtn->move(0,250);
 
     QPushButton* confirmBtn = new QPushButton(&dialog);
     confirmBtn->setFixedSize(150, 100);
-    confirmBtn->setStyleSheet("QPushButton { border-image: url(:/RestSite/YesBtn.png); }"
+    confirmBtn->setStyleSheet("QPushButton { border-image: url(:/assets/RestSite/YesBtn.png); }"
                               "QPushButton:pressed { margin: 5px 5px 5px 5px; }");
     confirmBtn->setCursor(buttonHoverCursor);
     confirmBtn->move(450,250);

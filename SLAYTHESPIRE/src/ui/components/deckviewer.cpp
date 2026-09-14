@@ -15,9 +15,9 @@ DeckViewerDialog::DeckViewerDialog(Player* player, QWidget* parent)
 {
     setWindowTitle("Deck");
     setFixedSize(917, 620);
-    setStyleSheet("QDialog { border-image: url(:/card/assets/cards/CardViewer.png); }");
+    setStyleSheet("QDialog { border-image: url(:/assets/cards/CardViewer.png); }");
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -41,7 +41,7 @@ QString DeckViewerDialog::cardImagePath(const Card* card)
     if (card->getIsUpgraded())
         cleanName += "Plus";
 
-    return QString(":/card/assets/cards/%1.png").arg(cleanName);
+    return QString(":/assets/cards/%1.png").arg(cleanName);
 }
 
 void DeckViewerDialog::setupUI()

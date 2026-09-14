@@ -20,7 +20,7 @@ ShopPage::ShopPage(Player *player, QWidget *parent)
 {
     shopLogic->generateStock();
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -147,7 +147,7 @@ void ShopPage::setupTopBar()
         "QPushButton {"
         "   background: transparent;"
         "   border: none;"
-        "   border-image: url(:/map/relicIcon.png);"
+        "   border-image: url(:/assets/map/relicIcon.png);"
         "}"
         "QPushButton:pressed {"
         "   margin: 2px 2px 2px 2px;"
@@ -177,7 +177,7 @@ void ShopPage::setupTopBar()
     QPushButton *deckBtn = new QPushButton(topBar);
     deckBtn->setFixedSize(45, 45);
     deckBtn->setCursor(buttonHoverCursor);
-    deckBtn->setIcon(QIcon(QPixmap(":/deckIcon.png").scaled(
+    deckBtn->setIcon(QIcon(QPixmap(":/assets/battle/deckIcon.png").scaled(
         45, 45,
         Qt::KeepAspectRatio,
         Qt::SmoothTransformation
@@ -243,7 +243,7 @@ void ShopPage::setupShopField()
 
     merchantBtn = new QPushButton(shopField);
     merchantBtn->setFixedSize(320, 320);
-    merchantBtn->setIcon(QIcon(":/Merchant.png"));
+    merchantBtn->setIcon(QIcon(":/assets/shop/Merchant.png"));
     merchantBtn->setIconSize(QSize(300, 300));
     merchantBtn->setStyleSheet(
         "background: transparent;"
@@ -303,30 +303,30 @@ QString ShopPage::getPotionImagePath(const QString &potionName)
 {
     if (potionName == "Block Potion")
     {
-        return ":/Potion/block_potion.png";
+        return ":/assets/Potion/block_potion.png";
     }
     else if (potionName == "Energy Potion")
     {
-        return ":/Potion/energy_potion.png";
+        return ":/assets/Potion/energy_potion.png";
     }
     else if (potionName == "Fairy in a Bottle")
     {
-        return ":/Potion/fairy_in_a_bottle.png";
+        return ":/assets/Potion/fairy_in_a_bottle.png";
     }
     else if (potionName == "Fire Potion")
     {
-        return ":/Potion/fire_potion.png";
+        return ":/assets/Potion/fire_potion.png";
     }
     else if (potionName == "Swift Potion")
     {
-        return ":/Potion/swift_potion.png";
+        return ":/assets/Potion/swift_potion.png";
     }
     else if (potionName == "Potion Empty")
     {
-        return ":/Potion/potionEmpty.png";
+        return ":/assets/Potion/potionEmpty.png";
     }
 
-    return ":/Potion/potionEmpty.png";
+    return ":/assets/Potion/potionEmpty.png";
 }
 
 static void clearLayout(QLayout *layout)
@@ -361,7 +361,7 @@ void ShopPage::populateInventory()
     mainInvLayout->setContentsMargins(30, 40, 30, 35);
     mainInvLayout->setSpacing(45);
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
 
@@ -508,7 +508,7 @@ void ShopPage::populateInventory()
     if (cardRemovalSold)
     {
         // Apply "Sold Out" visual state
-        remBtn->setIcon(QIcon(":/sold_out.png"));
+        remBtn->setIcon(QIcon(":/assets/shop/sold_out.png"));
         remBtn->setIconSize(QSize(130, 170));
         remBtn->setCursor(customCursor);
         remBtn->setEnabled(false);
@@ -517,7 +517,7 @@ void ShopPage::populateInventory()
     else
     {
         // Apply active state with hover effects
-        remBtn->setIcon(QIcon(":/cardRemoval.png"));
+        remBtn->setIcon(QIcon(":/assets/shop/cardRemoval.png"));
         remBtn->setCursor(buttonHoverCursor);
         remBtn->setIconSize(QSize(130, 170));
         remBtn->setStyleSheet(
@@ -639,7 +639,7 @@ void ShopPage::updateUI()
     if (currentState == ShopState::Greeting)
     {
         bg->setGeometry(0, 0, 1280, 720);
-        bg->setPixmap(QPixmap(":/battlebackground.png").scaled(
+        bg->setPixmap(QPixmap(":/assets/battle/battlebackground.png").scaled(
             1280, 720,
             Qt::IgnoreAspectRatio,
             Qt::SmoothTransformation
@@ -656,7 +656,7 @@ void ShopPage::updateUI()
     else
     {
         bg->setGeometry(0, 0, 1280, 720);
-        bg->setPixmap(QPixmap(":/shop_background.png").scaled(
+        bg->setPixmap(QPixmap(":/assets/shop/shop_background.png").scaled(
             1280, 720,
             Qt::IgnoreAspectRatio,
             Qt::SmoothTransformation

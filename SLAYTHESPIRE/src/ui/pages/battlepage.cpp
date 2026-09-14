@@ -118,7 +118,7 @@ BattlePage::BattlePage(Player* player, QVector<Enemy*> enemies, QWidget* parent)
     if (this->enemies.isEmpty())
         this->enemies.append (new Cultist);
 
-    QPixmap pixmap(":/cursor.png");
+    QPixmap pixmap(":/assets/map/cursor.png");
     QPixmap scaledPixmap = pixmap.scaled(30, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QCursor customCursor(scaledPixmap, 0, 0);
     this->setCursor(customCursor);
@@ -131,7 +131,7 @@ BattlePage::BattlePage(Player* player, QVector<Enemy*> enemies, QWidget* parent)
     // -- Background image (stretched to fit 1280x720) --
     QLabel *bg = new QLabel(this);
     bg->setGeometry(0, 0, 1280, 720);
-    bg->setPixmap(QPixmap(":/battlebackground.png").scaled(
+    bg->setPixmap(QPixmap(":/assets/battle/battlebackground.png").scaled(
         1280, 720,
         Qt::IgnoreAspectRatio,
         Qt::SmoothTransformation
@@ -247,7 +247,7 @@ void BattlePage::setupTopBar()
     QLabel *heartIcon = new QLabel(topBar);
     heartIcon->setFixedSize(45, 45);
     heartIcon->setStyleSheet("background: transparent;");
-    heartIcon->setPixmap(QPixmap(":/heartIcon.png").scaled(
+    heartIcon->setPixmap(QPixmap(":/assets/battle/heartIcon.png").scaled(
         45, 45,
         Qt::KeepAspectRatio,
         Qt::SmoothTransformation
@@ -260,7 +260,7 @@ void BattlePage::setupTopBar()
     QLabel *goldIcon = new QLabel(topBar);
     goldIcon->setFixedSize(45, 45);
     goldIcon->setStyleSheet("background: transparent;");
-    goldIcon->setPixmap(QPixmap(":/moneyPouch.png").scaled(
+    goldIcon->setPixmap(QPixmap(":/assets/battle/moneyPouch.png").scaled(
         45, 45,
         Qt::KeepAspectRatio,
         Qt::SmoothTransformation
@@ -343,7 +343,7 @@ void BattlePage::setupTopBar()
         "QPushButton {"
         "   background: transparent;"
         "   border: none;"
-        "   border-image: url(:/map/relicIcon.png);"
+        "   border-image: url(:/assets/map/relicIcon.png);"
         "}"
         "QPushButton:pressed {"
         "   margin: 2px 2px 2px 2px;"
@@ -360,7 +360,7 @@ void BattlePage::setupTopBar()
     QLabel *mapIcon = new QLabel(topBar);
     mapIcon->setFixedSize(60, 60);
     mapIcon->setStyleSheet("background: transparent; margin-top: -20px;");
-    mapIcon->setPixmap(QPixmap(":/mapIcon.png").scaled(
+    mapIcon->setPixmap(QPixmap(":/assets/battle/mapIcon.png").scaled(
         55, 55,
         Qt::KeepAspectRatio,
         Qt::SmoothTransformation
@@ -370,7 +370,7 @@ void BattlePage::setupTopBar()
     QPushButton *deckBtn = new QPushButton(topBar);
     deckBtn->setFixedSize(45, 45);
     deckBtn->setCursor(buttonHoverCursor);
-    deckBtn->setIcon(QIcon(QPixmap(":/deckIcon.png").scaled(
+    deckBtn->setIcon(QIcon(QPixmap(":/assets/battle/deckIcon.png").scaled(
         45, 45,
         Qt::KeepAspectRatio,
         Qt::SmoothTransformation
@@ -418,7 +418,7 @@ void BattlePage::setupBattleField()
     QVBoxLayout *playerLayout = new QVBoxLayout(playerWidget);
 
     QLabel *playerImg = new QLabel(playerWidget);
-    playerImg->setPixmap(QPixmap(":/ironclad.png").scaled(
+    playerImg->setPixmap(QPixmap(":/assets/battle/ironclad.png").scaled(
         230, 290,
         Qt::KeepAspectRatio,
         Qt::SmoothTransformation
@@ -456,7 +456,7 @@ void BattlePage::setupBattleField()
     playerBlockIconLabel = new QLabel(playerWidget);
     playerBlockIconLabel->setFixedSize(36, 36);
     playerBlockIconLabel->setStyleSheet("background: transparent;");
-    playerBlockIconLabel->setPixmap(QPixmap(":/defendIcon.png").scaled(
+    playerBlockIconLabel->setPixmap(QPixmap(":/assets/battle/defendIcon.png").scaled(
         36, 36, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     playerBlockLabel = new QLabel(playerBlockIconLabel);
@@ -600,7 +600,7 @@ void BattlePage::setupBottomBar()
     QLabel *energyLabel = new QLabel(bottomBar);
     energyLabel->setFixedSize(130, 130);
     energyLabel->setStyleSheet("background: transparent;");
-    energyLabel->setPixmap(QPixmap(":/energybutton.png").scaled(
+    energyLabel->setPixmap(QPixmap(":/assets/battle/energybutton.png").scaled(
         130, 130,
         Qt::KeepAspectRatio,
         Qt::SmoothTransformation
@@ -693,7 +693,7 @@ void BattlePage::setupBottomBar()
     drawPileBtn = new QPushButton(this);
     drawPileBtn->setFixedSize(70, 90);
     drawPileBtn->setCursor(buttonHoverCursor);
-    drawPileBtn->setIcon(QIcon(QPixmap(":/drawPile.png").scaled(
+    drawPileBtn->setIcon(QIcon(QPixmap(":/assets/battle/drawPile.png").scaled(
         80, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
     drawPileBtn->setIconSize(QSize(80, 100));
     drawPileBtn->setStyleSheet(
@@ -717,7 +717,7 @@ void BattlePage::setupBottomBar()
     discardPileBtn = new QPushButton(this);
     discardPileBtn->setFixedSize(70, 90);
     discardPileBtn->setCursor(buttonHoverCursor);
-    discardPileBtn->setIcon(QIcon(QPixmap(":/discardPile.png").scaled(
+    discardPileBtn->setIcon(QIcon(QPixmap(":/assets/battle/discardPile.png").scaled(
         80, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
     discardPileBtn->setIconSize(QSize(80, 100));
     discardPileBtn->setStyleSheet(
@@ -1472,7 +1472,7 @@ QString BattlePage::enemyImagePath(Enemy* enemy)
 
     QString cleanName = enemy->getName();
 
-    return QString(":/Enemy/%1.png").arg(cleanName);
+    return QString(":/assets/Enemy/%1.png").arg(cleanName);
 }
 
 BattlePage::CardTarget BattlePage::getCardTarget(Card* card)
@@ -1912,11 +1912,11 @@ QString BattlePage::effectImagePath(const Effect* effect)
     }
     else if(cleanName == "Girya")
     {
-        return QString(":/Relic/%1.png").arg(cleanName);
+        return QString(":/assets/Relic/%1.png").arg(cleanName);
     }
     else
     {
-        return QString(":/Effect/%1Eff.png").arg(cleanName);
+        return QString(":/assets/Effect/%1Eff.png").arg(cleanName);
     }
 }
 
@@ -2168,30 +2168,30 @@ QString BattlePage::getPotionImagePath(const QString &potionName)
 {
     if (potionName == "Block Potion")
     {
-        return ":/Potion/block_potion.png";
+        return ":/assets/Potion/block_potion.png";
     }
     else if (potionName == "Energy Potion")
     {
-        return ":/Potion/energy_potion.png";
+        return ":/assets/Potion/energy_potion.png";
     }
     else if (potionName == "Fairy in a Bottle")
     {
-        return ":/Potion/fairy_in_a_bottle.png";
+        return ":/assets/Potion/fairy_in_a_bottle.png";
     }
     else if (potionName == "Fire Potion")
     {
-        return ":/Potion/fire_potion.png";
+        return ":/assets/Potion/fire_potion.png";
     }
     else if (potionName == "Swift Potion")
     {
-        return ":/Potion/swift_potion.png";
+        return ":/assets/Potion/swift_potion.png";
     }
     else if (potionName == "Potion Empty")
     {
-        return ":/Potion/potionEmpty.png";
+        return ":/assets/Potion/potionEmpty.png";
     }
 
-    return ":/Potion/potionEmpty.png";
+    return ":/assets/Potion/potionEmpty.png";
 }
 
 void BattlePage::showEnemyPotionHighlights()
@@ -2334,7 +2334,7 @@ BattlePage::EnemyUI BattlePage::createEnemyUI(Enemy* enemy)
     ui.damageIconLabel = new QLabel(damagePreviewWidget);
     ui.damageIconLabel->setGeometry(0, 0, 40, 40);
     ui.damageIconLabel->setPixmap(
-        QPixmap(":/attack.png").scaled(
+        QPixmap(":/assets/battle/attack.png").scaled(
             40, 40,
             Qt::KeepAspectRatio,
             Qt::SmoothTransformation
@@ -2360,7 +2360,7 @@ BattlePage::EnemyUI BattlePage::createEnemyUI(Enemy* enemy)
 
     ui.blockIconLabel = new QLabel(ui.blockWidget);
     ui.blockIconLabel->setGeometry(0, 0, 36, 36);
-    ui.blockIconLabel->setPixmap(QPixmap(":/defendIcon.png").scaled(
+    ui.blockIconLabel->setPixmap(QPixmap(":/assets/battle/defendIcon.png").scaled(
         36, 36, Qt::KeepAspectRatio, Qt::SmoothTransformation
         ));
     ui.blockIconLabel->setStyleSheet("background: transparent;");
