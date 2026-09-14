@@ -12,6 +12,7 @@
 #include "items/relicsystem.h"
 #include "cards/statuscards.h"
 #include "audiomanager.h"
+#include "cards/cursecards.h"
 
 
 #include <utility>
@@ -131,7 +132,18 @@ void CombatManager::handleTurnStart()
     }
 
     player->resetEnergy();
-    player->drawCards(5);
+
+    int cardsToDraw = 5;
+    if (turnCount == 1)
+    {
+        if (CombatDeck* deck = player->getCombatDeck())
+        {
+            int innateMoved = deck->moveInnateCardsToHand();
+            cardsToDraw = qMax(0, cardsToDraw - innateMoved);
+        }
+    }
+
+    player->drawCards(cardsToDraw);
     player->getRelicSystem().onTurnStart(player);
     player->onTurnStartEffects();
 
@@ -209,7 +221,20 @@ bool CombatManager::playCard(Card* card, Enemy* target)
         return true;
     }
 
+    CombatDeck* deckForExhaustTracking = player->getCombatDeck();
+    int exhaustCountBeforePlay = deckForExhaustTracking ? deckForExhaustTracking->exhaustPileSize() : 0;
+
     card->play(player, enemies, target);
+
+    if (deckForExhaustTracking)
+    {
+        int exhaustedDuringPlay = deckForExhaustTracking->exhaustPileSize() - exhaustCountBeforePlay;
+
+        for (int i = 0; i < exhaustedDuringPlay; ++i)
+        {
+            triggerOnCardExhaust(nullptr);
+        }
+    }
 
     finalizeCardAfterUse(card);
 
@@ -276,19 +301,16 @@ void CombatManager::handleTurnEnd()
             if (!card)
                 continue;
 
-            if (card->getName() == "Regret")
+            if (dynamic_cast<Regret*>(card) != nullptr)
             {
                 int handSize = deck->handSize();
                 int damage = handSize;
                 player->loseHP(damage);
             }
 
-            if (card->getName() == "Burn")
+            if (Burn* burn = dynamic_cast<Burn*>(card))
             {
-                if (Burn* burn = dynamic_cast<Burn*>(card))
-                {
-                    player->loseHP(burn->getDamageAmount());
-                }
+                player->loseHP(burn->getDamageAmount());
             }
         }
     }
@@ -303,6 +325,8 @@ void CombatManager::handleTurnEnd()
 
     // 3) Timed debuffs/buffs tick down here
     decreaseTimedEffects(player);
+
+    player->removeEffect(Effect::Type::Rage);
 
     emit statsUpdated();
     checkWinLossCondition();

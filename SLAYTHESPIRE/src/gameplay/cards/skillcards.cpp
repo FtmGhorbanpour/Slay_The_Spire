@@ -212,7 +212,7 @@ Card* ShrugItOff::clone() const
 
 TrueGrit::TrueGrit()
     : Card("True Grit", "Gain 8 Block. Exhaust a random card in your hand.",
-           1, CardType::Skill, false, false, false, false), blockAmount(7)
+           1, CardType::Skill, false, false, false, false), blockAmount(8)
 {
 }
 void TrueGrit::play(Player* user, QVector<Enemy*>& enemies, Enemy* target)

@@ -79,6 +79,7 @@ class Berserk : public Card
 {
 private:
     int vulnerableAmount;
+    int energyPerTurn;
 
 public:
     Berserk();

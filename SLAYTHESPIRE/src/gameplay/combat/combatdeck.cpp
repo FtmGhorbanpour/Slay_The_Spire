@@ -88,9 +88,42 @@ void CombatDeck::drawCards(int count)
 {
     for(int i = 0; i < count; i++)
     {
-        if(drawCard() == nullptr)
-            return;
+        if(drawPile.isEmpty())
+            reshuffleDiscardIntoDrawPile();
+
+        if(drawPile.isEmpty())
+            return; // Truly nothing left anywhere - stop for real.
+
+        Card* card = drawPile.takeLast();
+
+        if(isHandFull())
+            discardPile.append(card); // Hand full: drawn then immediately discarded, but keep going.
+        else
+            hand.append(card);
     }
+}
+
+int CombatDeck::moveInnateCardsToHand()
+{
+    int moved = 0;
+
+    for (int i = drawPile.size() - 1; i >= 0; --i)
+    {
+        Card* card = drawPile[i];
+
+        if (card == nullptr || !card->doesInnate())
+            continue;
+
+        drawPile.removeAt(i);
+        moved++;
+
+        if (isHandFull())
+            discardPile.append(card);
+        else
+            hand.append(card);
+    }
+
+    return moved;
 }
 
 //----------------------------------

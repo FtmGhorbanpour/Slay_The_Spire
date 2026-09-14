@@ -75,6 +75,11 @@ bool CurseOfTheBell::isRemovable() const
     return false;
 }
 
+bool CurseOfTheBell::isUpgradable() const
+{
+    return false;
+}
+
 Card* CurseOfTheBell::clone() const
 {
     return new CurseOfTheBell(*this);
@@ -102,6 +107,11 @@ void Regret::play(Player* user, QVector<Enemy*>& enemies,Enemy* target)
 void Regret::upgrade()
 {
     // Curse cards cannot be upgraded.
+}
+
+bool Regret::isUpgradable() const
+{
+    return false;
 }
 
 Card* Regret::clone() const

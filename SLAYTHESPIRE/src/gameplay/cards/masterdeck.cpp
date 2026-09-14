@@ -107,6 +107,19 @@ QVector<Card*> MasterDeck::createFullCardPool(CardType type)
     return pool;
 }
 
+static QString canonicalCardId(Card* card)
+{
+    if (!card)
+        return QString();
+
+    QString name = card->getName();
+
+    if (card->getIsUpgraded() && name.endsWith('+'))
+        name.chop(1);
+
+    return name;
+}
+
 Card* MasterDeck::transformCard(Card* card)
 {
     if (card == nullptr || !card->isRemovable())
@@ -121,9 +134,11 @@ Card* MasterDeck::transformCard(Card* card)
 
     QVector<Card*> pool = createFullCardPool(card->getType());
 
+    const QString sourceCanonicalName = canonicalCardId(card);
+
     for (int i = pool.size() - 1; i >= 0; --i)
     {
-        if (pool[i]->getName() == card->getName())
+        if (pool[i]->getName() == sourceCanonicalName)
         {
             delete pool[i];
             pool.removeAt(i);
@@ -142,18 +157,6 @@ Card* MasterDeck::transformCard(Card* card)
     delete cards[index];
     cards[index] = newCard;
     return newCard;
-}
-static QString canonicalCardId(Card* card)
-{
-    if (!card)
-        return QString();
-
-    QString name = card->getName();
-
-    if (card->getIsUpgraded() && name.endsWith('+'))
-        name.chop(1);
-
-    return name;
 }
 
 MasterDeckSaveData MasterDeck::extractState() const

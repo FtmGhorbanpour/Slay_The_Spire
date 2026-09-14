@@ -81,3 +81,8 @@ bool Card::isRemovable() const
 {
     return true;
 }
+
+bool Card::isUpgradable() const
+{
+    return true;
+}

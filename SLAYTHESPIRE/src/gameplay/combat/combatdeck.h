@@ -45,6 +45,7 @@ public:
 
     Card* drawCard();
     void drawCards(int count);
+    int moveInnateCardsToHand();
 
     //----------------------------------
     // Turn Management

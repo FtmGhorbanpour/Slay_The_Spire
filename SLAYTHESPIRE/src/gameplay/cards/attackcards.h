@@ -66,6 +66,7 @@ class Feed : public Card
 {
 private:
     int damageAmount;
+    int healthGainAmount;
 
 public:
     Feed();

@@ -32,6 +32,8 @@ public:
 
     bool isRemovable() const override;
 
+    bool isUpgradable() const override;
+
     virtual Card* clone() const override;
 
 };
@@ -45,6 +47,8 @@ public:
     void play(Player* user, QVector<Enemy*>& enemies,Enemy* target = nullptr) override;
 
     void upgrade() override;
+
+    bool isUpgradable() const override;
 
     virtual Card* clone() const override;
 };

@@ -196,7 +196,7 @@ void UpgradeCardsDialog::populateCards()
 
     for (Card* card : player->getMasterDeck()->getCards())
     {
-        if (!card || card->getIsUpgraded())
+        if (!card || card->getIsUpgraded() || !card->isUpgradable())
             continue;
 
         QWidget* wrapper = new QWidget();

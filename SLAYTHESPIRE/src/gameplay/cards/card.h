@@ -77,6 +77,7 @@ public:
     bool canPlay() const;
     bool getIsUpgraded() const;
     virtual bool isRemovable() const;
+    virtual bool isUpgradable() const;
     virtual int getBaseDamage() const { return 0; }
     virtual int getDamageHits() const { return 1; }
 

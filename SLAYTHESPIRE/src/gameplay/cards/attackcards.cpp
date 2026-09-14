@@ -152,9 +152,10 @@ Card* Bludgeon::clone() const
 //======================================================
 
 Feed::Feed()
-    : Card("Feed", "Deal 10 damage. If Fatal, raise your Max HP by 3.",1,CardType::Attack)
+    : Card("Feed", "Deal 10 damage. If Fatal, raise your Max HP by 3. Exhaust.",1,CardType::Attack, true)
 {
     damageAmount = 10;
+    healthGainAmount = 3;
 }
 
 
@@ -171,7 +172,7 @@ void Feed::play(Player* user,QVector<Enemy*>& enemies,Enemy* target)
 
     if(target->isDead())
     {
-        user->increaseMaxHealth(3);
+        user->increaseMaxHealth(healthGainAmount);
     }
 
 }
@@ -189,7 +190,9 @@ void Feed::upgrade()
 
     damageAmount += 2;
 
-    description = "Deal 12 damage. If Fatal, raise your Max HP by 4.";
+    healthGainAmount = 4;
+
+    description = "Deal 12 damage. If Fatal, raise your Max HP by 4. Exhaust.";
 }
 
 Card* Feed::clone() const

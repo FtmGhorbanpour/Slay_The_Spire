@@ -52,7 +52,6 @@ class MasterDeck
 
     static Card* createCardById(const QString& cardId);
 
-
 };
 
 #endif // MASTERDECK_H

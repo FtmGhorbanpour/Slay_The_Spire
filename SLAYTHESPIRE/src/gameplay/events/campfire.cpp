@@ -33,6 +33,9 @@ bool Campfire::canSmith(Player* player, Card* card) const
     if (card->getIsUpgraded())
         return false;
 
+    if (!card->isUpgradable())
+        return false;
+
     return true;
 }
 
