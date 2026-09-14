@@ -203,10 +203,11 @@ NodeType Map::pickWeightedType(int floorIndex) const
 
     QVector<WeightedType> filtered;
     int totalWeight = 0;
-    bool ItsOk = true;
 
     for (const WeightedType& option : options)
     {
+        bool ItsOk = true;
+
         if (option.type == NodeType::Shop && nearBoss)
         {
             ItsOk = false;
@@ -245,13 +246,13 @@ bool Map::violatesAdjacencyRule(MapNode* node, NodeType candidate) const
         NodeType::Elite, NodeType::Campfire, NodeType::Treasure
     };
 
-    if (!restrictedGroup.contains(candidate))
-        return false;
-
-    for (MapNode* parent : node->getParents())
+    if (restrictedGroup.contains(candidate))
     {
-        if (restrictedGroup.contains(parent->getType()))
-            return true;
+        for (MapNode* parent : node->getParents())
+        {
+            if (restrictedGroup.contains(parent->getType()))
+                return true;
+        }
     }
 
     const QVector<NodeType> repeatedGroup = {

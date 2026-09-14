@@ -193,6 +193,9 @@ void CardRemovalDialog::populateDeck()
 
     for (Card* card : cards)
     {
+        if (!card || !card->isRemovable())
+            continue;
+
         QWidget *cardWidget = new QWidget(scrollContainer);
         cardWidget->setFixedSize(140, 190);
 
