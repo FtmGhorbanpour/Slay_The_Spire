@@ -78,7 +78,7 @@ void ShopPage::setupTopBar()
     QLabel *heartIcon = new QLabel(topBar);
     heartIcon->setFixedSize(45, 45);
     heartIcon->setStyleSheet("background: transparent;");
-    heartIcon->setPixmap(QPixmap(":/heartIcon.png").scaled(
+    heartIcon->setPixmap(QPixmap(":/assets/battle/heartIcon.png").scaled(
         45, 45,
         Qt::KeepAspectRatio,
         Qt::SmoothTransformation
@@ -96,7 +96,7 @@ void ShopPage::setupTopBar()
     QLabel *goldIcon = new QLabel(topBar);
     goldIcon->setFixedSize(45, 45);
     goldIcon->setStyleSheet("background: transparent;");
-    goldIcon->setPixmap(QPixmap(":/moneyPouch.png").scaled(
+    goldIcon->setPixmap(QPixmap(":/assets/battle/moneyPouch.png").scaled(
         45, 45,
         Qt::KeepAspectRatio,
         Qt::SmoothTransformation
@@ -167,7 +167,7 @@ void ShopPage::setupTopBar()
     QLabel *mapIcon = new QLabel(topBar);
     mapIcon->setFixedSize(60, 60);
     mapIcon->setStyleSheet("background: transparent; margin-top: -20px;");
-    mapIcon->setPixmap(QPixmap(":/mapIcon.png").scaled(
+    mapIcon->setPixmap(QPixmap(":/assets/battle/mapIcon.png").scaled(
         55, 55,
         Qt::KeepAspectRatio,
         Qt::SmoothTransformation
@@ -232,7 +232,7 @@ void ShopPage::setupShopField()
 
     QLabel *pImg = new QLabel(playerContainer);
     pImg->setGeometry(10, 10, 230, 290);
-    pImg->setPixmap(QPixmap(":/ironclad.png").scaled(
+    pImg->setPixmap(QPixmap(":/assets/battle/ironclad.png").scaled(
         230,
         290,
         Qt::KeepAspectRatio,
